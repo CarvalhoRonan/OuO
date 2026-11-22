@@ -51,7 +51,11 @@ SHA-256 do ZIP:
 
 ## Código-fonte
 
-O código está em [source](source). O script `Compilar.ps1` usa o compilador .NET Framework do Windows. O parâmetro opcional `-GoogleOAuthFile` permite incluir o cadastro de aplicativo de computador na compilação; o arquivo de cadastro e as autorizações pessoais não são versionados neste repositório.
+O código está em [source](source). O repositório reúne as fontes de texto; os binários, as dependências e todos os arquivos originais dos componentes também estão disponíveis no pacote completo da release.
+
+Para preparar uma cópia de desenvolvimento, extraia o pacote completo e copie as fontes deste repositório sobre essa pasta. O script `Compilar.ps1` usa o compilador .NET Framework do Windows. O parâmetro opcional `-GoogleOAuthFile` permite incluir o cadastro de aplicativo de computador na compilação; o arquivo de cadastro e as autorizações pessoais não são versionados neste repositório.
+
+`ARQUIVOS-SHA256.csv` descreve os arquivos do pacote completo da distribuição.
 
 ## Licenciamento
 

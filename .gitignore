@@ -1,0 +1,28 @@
+# Autorizações e cadastro local de desenvolvimento
+manutencao/
+configuracao/
+client_secret*.json
+OuO.GoogleOAuth.json
+ouo-google-desktop.json
+*.dat
+*.pfx
+*.p12
+
+# Diagnósticos, exportações e resultados locais de novas execuções
+diagnostics/
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+# Binários e imagens de distribuição disponíveis no pacote da release
+*.dll
+*.exe
+*.zip
+*.png
+*.ico
+
+# Produtos intermediários dos auxiliares nativos
+third-party-source/offline-account/build-x64/
+third-party-source/offline-account/build-x86/

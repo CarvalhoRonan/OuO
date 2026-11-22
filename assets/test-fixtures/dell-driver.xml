@@ -1,0 +1,116 @@
+<SoftwareComponent schemaVersion="2.0" identifier="43234429-954c-4ab8-9e26-981bb2dfc075" packageID="025D7" releaseID="025D7" hashMD5="6ca1a71bbaa8a53f3509858d3b39033f" path="FOLDER12660163M/4/Intel-Integrated-Sensor-Solution-Driver_025D7_WIN64_3.11.100.7733_A00_02.EXE" dateTime="2025-01-21T09:03:46Z" releaseDate="March 31, 2026" vendorVersion="3.11.100.7733" dellVersion="A00" packageType="LW64" size="11003752">
+    <Name>
+      <Display lang="en">Intel Integrated Sensor Solution Driver,3.11.100.7733,A00</Display>
+    </Name>
+    <ComponentType value="DRVR">
+      <Display lang="en">Driver</Display>
+    </ComponentType>
+    <Description>
+      <Display lang="en">The package contains the Intel Integrated Sensor Solution driver. The Intel Integrated Sensor Solution driver regulates the sensors for supported systems.</Display>
+    </Description>
+    <Category value="CS">
+      <Display lang="en">Chipset</Display>
+    </Category>
+    <SupportedDevices>
+      <Device componentID="103834" embedded="false">
+        <PCIInfo deviceID="7745" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7E45" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7F78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="A845" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="51FC" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="54FC" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="6E78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7745" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7A78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7AF8" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7E45" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7E90" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7F78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="A845" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="D354" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="E345" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="E445" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="51FC" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="54FC" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="6E78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7745" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7A78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7AF8" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7E45" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7E90" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7F78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="A845" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="D354" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="E345" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="E445" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="51FC" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="54FC" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="6E78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7745" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7A78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7AF8" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7E45" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7E90" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="7F78" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="A845" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="D354" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="E345" vendorID="8086" subDeviceID="" subVendorID="" />
+        <PCIInfo deviceID="E445" vendorID="8086" subDeviceID="" subVendorID="" />
+        <Display lang="en">Intel Integrated Sensor Solution Driver</Display>
+      </Device>
+    </SupportedDevices>
+    <SupportedOperatingSystems>
+      <OperatingSystem osCode="EXCAL" osVendor="Microsoft" majorVersion="10" minorVersion="0" spMajorVersion="0" spMinorVersion="0" osArch="x64">
+        <Display lang="en">Windows 10 64-bit- Excalibur</Display>
+      </OperatingSystem>
+      <OperatingSystem osCode="IOT01" osVendor="Microsoft" majorVersion="10" minorVersion="0" spMajorVersion="0" spMinorVersion="0" osArch="x64">
+        <Display lang="en">Windows 10 64-Bit</Display>
+      </OperatingSystem>
+      <OperatingSystem osCode="PE1064" osVendor="Microsoft" majorVersion="10" minorVersion="0" spMajorVersion="0" spMinorVersion="0" osArch="x64">
+        <Display lang="en">Windows 10 64-Bit</Display>
+      </OperatingSystem>
+      <OperatingSystem osCode="W10P4" osVendor="Microsoft" majorVersion="10" minorVersion="0" spMajorVersion="0" spMinorVersion="0" osArch="x64">
+        <Display lang="en">Windows 10 64-Bit</Display>
+      </OperatingSystem>
+      <OperatingSystem osCode="W11TM" osVendor="Microsoft" majorVersion="10" minorVersion="0" spMajorVersion="0" spMinorVersion="0" osArch="x64">
+        <Display lang="en">Windows 11 IOT</Display>
+      </OperatingSystem>
+      <OperatingSystem osCode="W21P4" osVendor="Microsoft" majorVersion="10" minorVersion="0" spMajorVersion="0" spMinorVersion="0" osArch="x64">
+        <Display lang="en">Windows 11</Display>
+      </OperatingSystem>
+      <OperatingSystem osCode="WTCLD" osVendor="Microsoft" majorVersion="0" minorVersion="0" spMajorVersion="0" spMinorVersion="0" osArch="x64">
+        <Display lang="en">Windows 10S 64-Bit</Display>
+      </OperatingSystem>
+    </SupportedOperatingSystems>
+    <LUCategory value="NONE">
+      <Display lang="en">NONE</Display>
+    </LUCategory>
+    <SupportedSystems>
+      <Brand key="58" prefix="DPL">
+        <Display lang="en">Dell Pro Laptops</Display>
+        <Model systemID="0CF4">
+          <Display lang="en">Dell-Pro-13-Plus-PB13250</Display>
+        </Model>
+        <Model systemID="0CF3">
+          <Display lang="en">Dell-Pro-13-Plus-PB13250</Display>
+        </Model>
+        <Model systemID="0CDB">
+          <Display lang="en">Dell-Pro-13-Plus-PB13250</Display>
+        </Model>
+        <Model systemID="0CF5">
+          <Display lang="en">Dell-Pro-16-Plus-PB16250</Display>
+        </Model>
+        <Model systemID="0CF6">
+          <Display lang="en">Dell-Pro-16-Plus-PB16250</Display>
+        </Model>
+        <Model systemID="0CDD">
+          <Display lang="en">Dell-Pro-16-Plus-PB16250</Display>
+        </Model>
+      </Brand>
+    </SupportedSystems>
+    <ImportantInfo URL="http://www.dell.com/support/home/us/en/19/Drivers/DriversDetails?driverId=025D7" />
+    <Criticality value="1">
+      <Display lang="en">Recommended</Display>
+    </Criticality>
+  </SoftwareComponent>
+  

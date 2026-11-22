@@ -1,0 +1,2 @@
+﻿PASS Google inicia autorizacao sem entrada no terminal, pede somente leitura e encerra ao receber cancelamento.
+PASS OneDrive inicia autorizacao sem entrada no terminal, pede somente leitura e encerra ao receber cancelamento.

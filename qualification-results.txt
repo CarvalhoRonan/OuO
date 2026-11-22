@@ -1,0 +1,24 @@
+﻿PASS • Semantic labels are collectable; state colors update without global property-descriptor listeners.
+PASS • 22 experimental feature groups show notices beside their controls, with theme-aware colors.
+clone • Cópia e GPT verificadas em discos virtuais; inicialização da cópia e dispositivos SATA/NVMe/USB ainda precisam de ensaio.
+account • Cópias e formato do Registro foram verificados. A entrada na conta de um Windows recuperado ainda precisa de validação.
+boot • A alternância e a reinicialização precisam de um Windows instalado; o Sandbox não oferece BCD convencional.
+restore • A agenda foi validada. Criação efetiva e restauração dependem da Proteção do Sistema e de ensaio adicional.
+office • A ferramenta e os planos são conferidos. Edições, conflitos MSI/Click-to-Run e instalações reais ainda não têm homologação ampla.
+drivers • Busca e correspondência foram verificadas. Instalação, reinicialização e versão final exigem hardware correspondente.
+cloud • Proteções verificadas em arquivos controlados. Download e remoção em contas pessoais/empresariais ainda estão em validação.
+cloud-storage • Login, arquivos e cotas por serviço foram consultados em uma conta pessoal Google. Outras contas, OneDrive e cenários de falha ainda precisam de validação ampliada.
+memory • API e critérios verificados em auxiliares próprios. Acompanhamento prolongado com aplicativos reais ainda está em validação.
+printing • Execução e proteções verificadas em cenários controlados. Impressoras físicas, preferências e reinstalação exigem teste com o equipamento.
+installers • Inventário e fluxos foram verificados em cenários controlados. Instalação, atualização e remoção reais por WinGet/Chocolatey/Scoop, MSI e Store ainda precisam de ensaios por pacote e versão do Windows.
+tweaks • Seleção, consulta, backup e restauração foram verificados. O efeito de cada ajuste, remoção e alteração de energia ou segurança ainda precisa de ensaio na edição e versão correspondentes.
+cleanup • Proteções e exclusão de arquivos próprios foram verificadas. Caches e rastros de cada programa real ainda precisam de validação; revise os itens encontrados antes de excluir.
+antimalware • As consultas de processos e os fluxos foram verificados. Detecção de ameaças reais e integração com cada versão dos motores externos ainda precisam de homologação.
+disk-map • O índice NTFS foi verificado em discos virtuais. Tempo de leitura e completude em unidades físicas grandes ainda dependem de auditoria com administrador.
+repair • Execução e recuperação de falhas precisam de testes adicionais em instalações correspondentes. Consulte os detalhes antes de aplicar.
+features • Consulta e interface verificadas. Instalação/remoção e reinicialização variam por edição e precisam de ensaio específico.
+upgrade • Checagens disponíveis; instalação, migração e contornos de requisitos permanecem em testes e não garantem oferta pelo Windows Update.
+registry • Backups e rechecagem verificados em cenários controlados. A validade de referências de aplicativos reais precisa de avaliação individual.
+display • Leitura e temporizador verificados; troca/reversão em monitores e drivers diversos ainda requerem validação.
+browser • Regras verificadas em cenários controlados. Efeito com DoH, perfis e diferentes navegadores depende de homologação adicional.
+dns • Aplicação, leitura e restauração passaram em uma compilação anterior no Sandbox. A compilação atual e cenários com VPN, vários adaptadores e DNS seguro ainda precisam de validação administrativa.

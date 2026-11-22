@@ -1,0 +1,87 @@
+<ns0:SoftwareDistributionPackage xmlns:ns0="http://schemas.microsoft.com/sms/2005/04/CorporatePublishing/SystemsManagementCatalog.xsd" xmlns:ns1="http://schemas.microsoft.com/wsus/2005/04/CorporatePublishing/SoftwareDistributionPackage.xsd" xmlns:ns2="http://schemas.microsoft.com/wsus/2005/04/CorporatePublishing/LogicalApplicabilityRules.xsd" xmlns:ns3="http://schemas.microsoft.com/wsus/2005/04/CorporatePublishing/BaseApplicabilityRules.xsd" xmlns:ns4="http://schemas.microsoft.com/wsus/2005/04/CorporatePublishing/Installers/CommandLineInstallation.xsd" SchemaVersion="1.0">
+    <ns1:Properties PackageID="30004850-0000-0000-5350-000000071628" CreationDate="2020-02-17T16:17:26" VendorName="HP Business Clients">
+        <ns1:MoreInfoUrl>https://www.hp.com/support</ns1:MoreInfoUrl>
+        <ns1:SupportUrl>https://www.hp.com/support</ns1:SupportUrl>
+        <ns1:ProductName>Driver</ns1:ProductName>
+    </ns1:Properties>
+    <ns1:LocalizedProperties>
+        <ns1:Language>en</ns1:Language>
+        <ns1:Title>Intel Trusted Execution Engine Interface Driver [1.0.0.1064.A1]</ns1:Title>
+        <ns1:Description>[1.0.0.1064.A1] This package provides the Intel Trusted Execution Engine Interface Driver for supported desktop models that are running a supported operating system.</ns1:Description>
+    </ns1:LocalizedProperties>
+    <ns1:UpdateSpecificData MsrcSeverity="Low" UpdateClassification="Updates">
+        <ns1:KBArticleID>sp71628</ns1:KBArticleID>
+    </ns1:UpdateSpecificData>
+    <ns1:IsInstallable>
+        <ns2:And>
+            <ns3:WmiQuery Namespace="Root\cimv2" WqlQuery="select * from Win32_ComputerSystem where (Manufacturer='Hewlett-Packard' and not (Model like '%Proliant%')) or (Manufacturer='HP') " />
+            <ns2:Or>
+                <ns2:And>
+                    <ns3:Processor Architecture="9" />
+                    <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                    <ns3:RegSz Key="HKEY_LOCAL_MACHINE" Subkey="Software\Microsoft\Windows NT\CurrentVersion" Value="ReleaseId" Comparison="EqualTo" Data="1809" />
+                </ns2:And>
+                <ns2:And>
+                    <ns3:Processor Architecture="9" />
+                    <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                    <ns3:RegSz Key="HKEY_LOCAL_MACHINE" Subkey="Software\Microsoft\Windows NT\CurrentVersion" Value="ReleaseId" Comparison="EqualTo" Data="1607" />
+                </ns2:And>
+                <ns2:And>
+                    <ns3:Processor Architecture="9" />
+                    <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                    <ns3:RegSz Key="HKEY_LOCAL_MACHINE" Subkey="Software\Microsoft\Windows NT\CurrentVersion" Value="ReleaseId" Comparison="EqualTo" Data="1507" />
+                </ns2:And>
+                <ns2:And>
+                    <ns3:Processor Architecture="9" />
+                    <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                    <ns3:RegSz Key="HKEY_LOCAL_MACHINE" Subkey="Software\Microsoft\Windows NT\CurrentVersion" Value="ReleaseId" Comparison="EqualTo" Data="1903" />
+                </ns2:And>
+                <ns2:And>
+                    <ns3:Processor Architecture="9" />
+                    <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                    <ns3:RegSz Key="HKEY_LOCAL_MACHINE" Subkey="Software\Microsoft\Windows NT\CurrentVersion" Value="ReleaseId" Comparison="EqualTo" Data="1709" />
+                </ns2:And>
+                <ns2:And>
+                    <ns3:Processor Architecture="9" />
+                    <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                    <ns3:RegSz Key="HKEY_LOCAL_MACHINE" Subkey="Software\Microsoft\Windows NT\CurrentVersion" Value="ReleaseId" Comparison="EqualTo" Data="1703" />
+                </ns2:And>
+                <ns2:And>
+                    <ns3:Processor Architecture="9" />
+                    <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                    <ns3:RegSz Key="HKEY_LOCAL_MACHINE" Subkey="Software\Microsoft\Windows NT\CurrentVersion" Value="ReleaseId" Comparison="EqualTo" Data="1803" />
+                </ns2:And>
+            </ns2:Or>
+        </ns2:And>
+    </ns1:IsInstallable>
+    <ns1:InstallableItem ID="30004850-0000-0001-5350-000000071628">
+        <ns1:ApplicabilityRules>
+            <ns1:IsInstalled>
+                <ns2:And>
+                    <ns3:WmiQuery Namespace="Root\cimv2" WqlQuery="select * from Win32_BaseBoard where Product LIKE '%2176%'" />
+                    <ns3:WmiQuery Namespace="Root\cimv2" WqlQuery="select * from Win32_PnpEntity where DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B20103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B0C103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B15103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B28103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2176103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B1A103C%'" />
+                    <ns2:And>
+                        <ns3:Processor Architecture="9" />
+                        <ns3:WindowsVersion Comparison="EqualTo" MajorVersion="10" MinorVersion="0" />
+                        <ns3:FileVersion Csidl="37" Path="drivers\TXEIx64.sys" Comparison="GreaterThanOrEqualTo" Version="1.0.0.1064" />
+                    </ns2:And>
+                </ns2:And>
+            </ns1:IsInstalled>
+            <ns1:IsInstallable>
+                <ns2:And>
+                    <ns3:WindowsVersion Comparison="GreaterThanOrEqualTo" MajorVersion="4" />
+                    <ns3:WmiQuery Namespace="Root\cimv2" WqlQuery="select * from Win32_BaseBoard where Product LIKE '%2176%'" />
+                    <ns3:WmiQuery Namespace="Root\cimv2" WqlQuery="select * from Win32_PnpEntity where DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B20103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B0C103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B15103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B28103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2176103C%' or DeviceID LIKE '%PCI\\VEN_8086&amp;DEV_0F18&amp;SUBSYS_2B1A103C%'" />
+                </ns2:And>
+            </ns1:IsInstallable>
+        </ns1:ApplicabilityRules>
+        <ns1:InstallProperties CanRequestUserInput="false" Impact="Normal" RequiresNetworkConnectivity="false" RebootBehavior="AlwaysRequiresReboot" />
+        <ns4:CommandLineInstallerData Program="sp71628.exe" Arguments="-s -e cmd.exe -a /c &quot;SetupTXE.exe&quot; -s -notcs" DefaultResult="Failed" RebootByDefault="false">
+            <ns4:ReturnCode Code="14" Result="Succeeded" Reboot="true" />
+            <ns4:ReturnCode Code="1" Result="Succeeded" Reboot="true" />
+            <ns4:ReturnCode Code="0" Result="Succeeded" Reboot="true" />
+            <ns4:ReturnCode Code="3010" Result="Succeeded" Reboot="true" />
+        </ns4:CommandLineInstallerData>
+        <ns1:OriginFile Digest="dQBfl/rJNjVRLH8Za5dXuTN9K0w=" FileName="sp71628.exe" Size="36230432" Modified="2020-02-14T19:51:36" OriginUri="https://ftp.hp.com/pub/softpaq/sp71501-72000/sp71628.exe" />
+    </ns1:InstallableItem>
+</ns0:SoftwareDistributionPackage>

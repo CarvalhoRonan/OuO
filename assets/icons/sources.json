@@ -1,0 +1,80 @@
+[
+  {
+    "Id": "Mozilla.Firefox",
+    "File": "Mozilla.Firefox.png",
+    "Source": "https://raw.githubusercontent.com/mozilla/gecko-dev/master/browser/branding/official/default64.png",
+    "SHA256": "12130CE8511F4A348C25380BA9B70B80B2FF0680E4EE801367BF0DBB5E94C00A"
+  },
+  {
+    "Id": "Brave.Brave",
+    "File": "Brave.Brave.png",
+    "Source": "https://raw.githubusercontent.com/brave/brave-core/master/app/theme/brave/product_logo_64.png",
+    "SHA256": "2AE52E3A7D22FF25775A86D1E6D3465D79C75011F39612C36D4698911071FB0B"
+  },
+  {
+    "Id": "TheDocumentFoundation.LibreOffice",
+    "File": "TheDocumentFoundation.LibreOffice.ico",
+    "Source": "https://www.libreoffice.org/favicon.ico",
+    "SHA256": "237FB4F5A4D58BEBE91257CB0A9FB05178050DCDCB4909B96EA032BB021EAF08"
+  },
+  {
+    "Id": "7zip.7zip",
+    "File": "7zip.7zip.png",
+    "Source": "https://www.7-zip.org/7ziplogo.png",
+    "SHA256": "F8AC2201F43C4989EB95B2184EEE17A705A3107E43852859D5CE01E239D16ADA"
+  },
+  {
+    "Id": "Notepad++.Notepad++",
+    "File": "Notepad++.Notepad++.ico",
+    "Source": "https://raw.githubusercontent.com/notepad-plus-plus/notepad-plus-plus/master/PowerEditor/src/icons/npp.ico",
+    "SHA256": "7F00C181277BDDFE06F51E7712C713E24E29A167B20033C43829136CDADC655D"
+  },
+  {
+    "Id": "Spotify.Spotify",
+    "File": "Spotify.Spotify.png",
+    "Source": "https://open.spotifycdn.com/cdn/images/favicon32.b64ecc03.png",
+    "SHA256": "B64ECC030DCC47688F94D6C4B14D747F2B8DBCDC7012E5C69574F8354EAC7257"
+  },
+  {
+    "Id": "Discord.Discord",
+    "File": "Discord.Discord.ico",
+    "Source": "https://discord.com/assets/favicon.ico",
+    "SHA256": "128E20B3B15C65DD470CB9D0DC8FE10E2FF9F72FAC99EE621B01A391EF6B81C7"
+  },
+  {
+    "Id": "Microsoft.VisualStudioCode",
+    "File": "Microsoft.VisualStudioCode.png",
+    "Source": "https://raw.githubusercontent.com/microsoft/vscode/main/resources/win32/code_70x70.png",
+    "SHA256": "A0399355CE0F19952BDB2ECC0FCA1268EB1DA67BA8B946B47971B768998A7F97"
+  },
+  {
+    "Id": "Google.Chrome",
+    "File": "Google.Chrome.png",
+    "Source": "https://www.google.com/chrome/static/images/favicons/favicon-96x96.png",
+    "SHA256": "5B9905BCEB51975C501F02F1B2C646AE5A95698F49BA75D33B7283BED65C5831"
+  },
+  {
+    "Id": "SumatraPDF.SumatraPDF",
+    "File": "SumatraPDF.SumatraPDF.ico",
+    "Source": "https://www.sumatrapdfreader.org/favicon.ico",
+    "SHA256": "4910410972A7D550F6E483DE99A53EDE10FDBFA5435122AF36736368D5ABB04A"
+  },
+  {
+    "Id": "VideoLAN.VLC",
+    "File": "VideoLAN.VLC.ico",
+    "Source": "https://www.videolan.org/favicon.ico",
+    "SHA256": "8D4A9EB0AB500890BBCA4691848F67967EFB16F1C3B1F81564A5656250EDF419"
+  },
+  {
+    "Id": "Git.Git",
+    "File": "Git.Git.png",
+    "Source": "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png",
+    "SHA256": "3585B2EBE81259786804764BDF0777D34C1F40264F9826F8835FFD1063BE4959"
+  },
+  {
+    "Id": "Microsoft.PowerToys",
+    "File": "Microsoft.PowerToys.png",
+    "Source": "https://raw.githubusercontent.com/microsoft/PowerToys/main/doc/images/icons/PowerToys%20icon/PNG/PowerToysAppList.targetsize-64.png",
+    "SHA256": "EF99167B73AB043B5E7B8FA76439D5A4D69070DCACE8EC3CAC000E67262D18FF"
+  }
+]

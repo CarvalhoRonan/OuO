@@ -1,0 +1,1041 @@
+{
+  "captured": "2026-11-03",
+  "sources": [
+    {
+      "name": "winutil",
+      "url": "https://github.com/ChrisTitusTech/winutil",
+      "archive_commit_comment": "2406e326b1462746b92763bdfdf99269a4968822",
+      "license": "MIT"
+    },
+    {
+      "name": "raphire",
+      "url": "https://github.com/Raphire/Win11Debloat",
+      "archive_commit_comment": "5d88bfe9ef2be5a8a643166a6400eb78a30c46ec",
+      "license": "MIT"
+    },
+    {
+      "name": "Dism-Multi-language",
+      "url": "https://github.com/Chuyu-Team/Dism-Multi-language",
+      "tree_sha": "875bce3511995000ceed38e3b7aba5917e4868cc",
+      "license": "MIT"
+    }
+  ],
+  "files": [
+    {
+      "path": "catalog-normalized.json",
+      "sha256": "41fb160d934e5f5990ae2a3fcd93f0e4fb3fc85ce9c1684221fa8b791f25d5ab"
+    },
+    {
+      "path": "generate-tweaks.py",
+      "sha256": "949b1efe40555161fd1eeb45fa6e22b98519abdbbdeaedd8edaa1398211ecdf2"
+    },
+    {
+      "path": "dism/Data.xml",
+      "sha256": "5fe61036845840ad7e9ee3d2382a93562a7c692529a05d008ce70e88322a102d"
+    },
+    {
+      "path": "dism/en.xml",
+      "sha256": "92494a9d14774ef2b195526794ae8371d052bcce8b5290fa94799537a0ce57cc"
+    },
+    {
+      "path": "dism/pt.xml",
+      "sha256": "c69ff58dfc8cc2e7ae741814e7940b3a03e8128f4a4aeaa86d63b46d045c9978"
+    },
+    {
+      "path": "raphire/Features.json",
+      "sha256": "9cce3ad7caacb372ad68705c31e38b0a700eb24689fb566a3993e65f2a18d958"
+    },
+    {
+      "path": "raphire/pt-BR.json",
+      "sha256": "3b5c182783547e665953c96bd510f02d232c6509935f9006bb86f622f120d0cf"
+    },
+    {
+      "path": "winutil/tweaks.json",
+      "sha256": "a19d8cca8e601d3b5e4b8672867ce951d38ba4e66403fc86400fa9571c84cdae"
+    },
+    {
+      "path": "raphire/Regfiles/Add_All_Folders_Under_This_PC.reg",
+      "sha256": "1ba445588abbdb83f34afd75fb342a948b235c98d70aa8400d7a8e78fd108185"
+    },
+    {
+      "path": "raphire/Regfiles/Align_Taskbar_Left.reg",
+      "sha256": "f94b4247c21de0e276b4f91393dc4e4bdabe57c7c28680be020167638e1e5d79"
+    },
+    {
+      "path": "raphire/Regfiles/Combine_MMTaskbar_Always.reg",
+      "sha256": "572352a51d24dc713aeec199325cd20fe26742c2451b1fc35af26c404e8aa069"
+    },
+    {
+      "path": "raphire/Regfiles/Combine_MMTaskbar_Never.reg",
+      "sha256": "ae1f2c3d92c06cea778a23df9f80c9cbd3ea801a880a0980e0ce2e29b5235827"
+    },
+    {
+      "path": "raphire/Regfiles/Combine_MMTaskbar_When_Full.reg",
+      "sha256": "a1c19db92d4bd05f2addaeb5f93c5293db25cd6d637c9427d36677a228652924"
+    },
+    {
+      "path": "raphire/Regfiles/Combine_Taskbar_Always.reg",
+      "sha256": "e5bcc8b79d12cab5d3d09fc451927ce099e75283cc5aeaa045860c6400017666"
+    },
+    {
+      "path": "raphire/Regfiles/Combine_Taskbar_Never.reg",
+      "sha256": "e22c0105c14866baddfcab1461cba34feffdf71751e2a162080fc447f06b79c3"
+    },
+    {
+      "path": "raphire/Regfiles/Combine_Taskbar_When_Full.reg",
+      "sha256": "c59c4077eb2dd3e32468e053b1a325bdda69119284974f18478876382abc0e60"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_AI_Recall.reg",
+      "sha256": "7f5c62a6394a75d4b7c881535e94f7e61d3391cdde0db87b45c11e6cfe9676af"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_AI_Service_Auto_Start.reg",
+      "sha256": "d153db56b2bbd005af47fd30a0a102f7f779324f237fdf086883ddc305594140"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Animations.reg",
+      "sha256": "bd35767f0cc662d29bed3c01e0ce1b13fcebcc4ac578fd5665d59befb2dd2380"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Bing_Cortana_In_Search.reg",
+      "sha256": "d247168a918bf379bedcbb7fd2e7e42b2a6877875e107e68562ca2c7cc54ac84"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Bitlocker_Auto_Encryption.reg",
+      "sha256": "efb411e654bc02de30d76fe22d3fa21398e2eb361d344ff2fae2614ab9b1bc83"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Brave_Bloat.reg",
+      "sha256": "2c8504174f124cf6cecda8332694282629b0c723239c622067ae0366813192d8"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Chat_Taskbar.reg",
+      "sha256": "1de8b10b81c5c5b6191ec949d93c47a35168cacc340c90db8fa521c4dfbe6a8a"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Chrome_AI_Features.reg",
+      "sha256": "0ec7c331f99924e4266c8e6985c6f3caf9e791c8f375a64ee578f80673c5609b"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Click_to_Do.reg",
+      "sha256": "f5d5dcfd9c55d0fb50c1c9cf964c044bd95ea468e31b23be37e2694ed02e411c"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Copilot.reg",
+      "sha256": "dc742a4f908907b2206408cde3c46ede2fc02ab5662bc62b91d8da0ecfe3f88d"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Delivery_Optimization.reg",
+      "sha256": "54028dab9b1ab7437f91304959f17f13af2e6a9206d435ce515c6e27b6b1547b"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Desktop_Spotlight.reg",
+      "sha256": "a49b6c74b71fb0129accaaab6b083d588202f9d099eab1d00591bba60fd9b173"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Device_Auto_App_Download.reg",
+      "sha256": "5a7a105241ae0b2137a9365e51d3f63786c7f6ac1ce0b01fc990b51a9a750947"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Driver_Updates.reg",
+      "sha256": "52603d0d8877c740cdf0b71cc025df76b6f6f3e588addb854b314f51f0efd325"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_DVR.reg",
+      "sha256": "7b67dfcb226bf50bb7dd61be981fb54a08a47be2efda89765fad1c88bc56afe6"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Edge_Ads_And_Suggestions.reg",
+      "sha256": "4d94e0b11b20fe8ba3870f407a708af87e34b1ab1397b342ef2f63c622f8c2c2"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Edge_AI_Features.reg",
+      "sha256": "964d4856a47a70eca8d03d57bbb4bb92f00782f8bc79d7f1dcfaf86aad5c3501"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Enhance_Pointer_Precision.reg",
+      "sha256": "cd8cfe6ac1a77681210b39bd85e670f88dc51a5911547540480902745e289c8e"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Fast_Startup.reg",
+      "sha256": "ba8ac3589193fcaaa26ff5a88fdb4ccf973c7a64dec28b727cf5e2677a80b67c"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Find_My_Device.reg",
+      "sha256": "b100f8876be8efec490891c90ec04d10a3f0d677da102fdfc917ccf575383fbb"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Game_Bar_Integration.reg",
+      "sha256": "a39888ca0313cc0b8b04d2841dbe78faf6d53d6213dcec338d1e112ead9f7e9d"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Give_access_to_context_menu.reg",
+      "sha256": "88fb1f6b2d32097b34c86a1340adf4fd4a5b39feec2eb1822f65d734f80b4834"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Include_in_library_from_context_menu.reg",
+      "sha256": "80a78262a8bd6607eea59be652855a9985cf94759588295883f3dad34c4ee9a3"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Location_Services.reg",
+      "sha256": "9c09d489e019425d0da82c0bd9eddea3ee6aa4a9f2f4ebf8298fc32aaa5611dd"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Lockscreen_Tips.reg",
+      "sha256": "b44b7100e1a2cf08f0ad80e955907d0931cc808d7fdc6879a47294f1da9689ec"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Modern_Standby_Networking.reg",
+      "sha256": "391d75c0f01edae5c0cb0adc3e0030fb70b7ddf048489bf9a5965c9d17f1e722"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Notepad_AI_Features.reg",
+      "sha256": "fcfe2894c9f9624044fadfe9752e2d4f05146407b32e876f78507d3e6d800c4d"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Notifications.reg",
+      "sha256": "2aa87a07e0f79fd03393797d61276687c8dfe8f8097094a93f03d5ebdfc50ca6"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Paint_AI_Features.reg",
+      "sha256": "3d70eff5a7c977227978f48deaade6c49fa40342ebc10cd942af18edef6b7eef"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Phone_Link_In_Start.reg",
+      "sha256": "d3d310ef3ec9aa1adfdd96b9ffebe51ab423215f99a6e5edc13494185bc87dbf"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Settings_365_Ads.reg",
+      "sha256": "aeef35cb4b9f71e8e1e8276c620ba37585be191d9d0726448e82eaf349a77546"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Settings_Home.reg",
+      "sha256": "a4a0e091b1e10bff0dcead0df3e73cb579fa92da3b3154b36a5ae1a74e859cd6"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Share_from_context_menu.reg",
+      "sha256": "044b927474d977a14886176f36beb7291cf06a3524e3ba27af321f2e6fa87acc"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Show_More_Options_Context_Menu.reg",
+      "sha256": "4f80fe56a481bdc553047981fe231b1eeafdf39295f033a8b11ecf93d8131381"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Snap_Assist.reg",
+      "sha256": "94951ac1867d6eaee60a312a12881c1e6c1fa635a783f5ec7582d1836b03f538"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Snap_Layouts.reg",
+      "sha256": "2881b894c46486cbf427b6049a49739f3af4e636de6a1012c30bdd92bf50caae"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Start_All_Apps.reg",
+      "sha256": "9bd61eb8097578aaf901941cc2196bc0a41b6d558056ff9c820067dcbbd05c8e"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Start_Recommended.reg",
+      "sha256": "80e8b57e63707297e24cc75a0dab2707bd1ccd5425100d9636407d8f1fdb903f"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Sticky_Keys_Shortcut.reg",
+      "sha256": "af3d002f5fe0ad3e71abf6281849258efeca6ecbc9dc9fee350a7a380f2c3cc2"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Storage_Sense.reg",
+      "sha256": "96318ed2cc69aadac25f22344afed1ec8c21b54c0d99fe997a9ab53de5cebaae"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Telemetry.reg",
+      "sha256": "943d1348671c7c0b37f0cf13359113190fb012da4d0253cbf7f839b5d439caec"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Transparency.reg",
+      "sha256": "1da2e2beda9ff19052cdc94293d6f7a6ae3993c45fa17de46277e6fc23d0815d"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Update_ASAP.reg",
+      "sha256": "0cef7e67c9c59407c81f25c637a0e5d51a3cd7ab7c0f800157b3281ac399f4fb"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Windows_Suggestions.reg",
+      "sha256": "6db962db6da06045b60c9d4561f1151b5bfb0d2b14af6171c57e889f16be715b"
+    },
+    {
+      "path": "raphire/Regfiles/Disable_Window_Snapping.reg",
+      "sha256": "162132b2e8f2cbd32cc27e7464790b12de3a1d0360e2239d89ee526b9c94c2aa"
+    },
+    {
+      "path": "raphire/Regfiles/Enable_Dark_Mode.reg",
+      "sha256": "8960ca278b878a45a2e6d5e61b4ee63364e2f864c2d2b0ef84ad9914433ea6a8"
+    },
+    {
+      "path": "raphire/Regfiles/Enable_Desktop_Spotlight.reg",
+      "sha256": "9d5b582c4d3ac84327b153e63a41c98774c73393a365ac064c017f573db91059"
+    },
+    {
+      "path": "raphire/Regfiles/Enable_End_Task.reg",
+      "sha256": "21e53b7b6786d199e63e18e8e612bb7bc8fa7dc673d171f1af0934ef030777cb"
+    },
+    {
+      "path": "raphire/Regfiles/Enable_Last_Active_Click.reg",
+      "sha256": "46ade8ebc36771b25955010888f05275c6b4a1563f236c65f53a2746e654a265"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_3D_Objects_Folder.reg",
+      "sha256": "b8a7f7def95349d2b78763e4776ba131b0975e10406363f2b73d040576c76d8c"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Desktop_Spotlight_Icon.reg",
+      "sha256": "17dbd75f473eb3d0a86fba9c587516d7a34fe7f6c3a8294e4bdc08f23b569afd"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Drive_Letters.reg",
+      "sha256": "5d1cc1959403fe7e18abd943e210316eb0673f1f32b55eb35013f8e3d9fe3c07"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_duplicate_removable_drives_from_navigation_pane_of_File_Explorer.reg",
+      "sha256": "bb5102fcb1c0ed39abbcb8306387444cc6c2349767623dfdbd32090af47ae70b"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Gallery_from_Explorer.reg",
+      "sha256": "2c9f7af6f724590297f1d68e6b36f206ce9f17e08fbedb2d10459bb6c3dcc332"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Home_from_Explorer.reg",
+      "sha256": "6b35bd3a2c6846e8f4928acd96206b9a73385dfbd60fe7e1dba422e1615aa511"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Music_Folder.reg",
+      "sha256": "e85608a743a148d5e77d4c29810b3583898885699bfed5bfb18407a65103edd4"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Onedrive_Folder.reg",
+      "sha256": "e2b9c5044c0ca77acae9e3c9cf69a9cefb5e8e5af50687b5b7d67eb75ad742ab"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Search_Taskbar.reg",
+      "sha256": "0f7b2aa743b5dc843f5be9da4308f65628bfc7214c1281d890b1cdf46c87bde7"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Tabs_In_Alt_Tab.reg",
+      "sha256": "55f9190338255ad7067e78113102c27d865e5240c52967902393b311234301be"
+    },
+    {
+      "path": "raphire/Regfiles/Hide_Taskview_Taskbar.reg",
+      "sha256": "894caccfad9ca3a577d596c8638f5b32225a76510244e819b2bbf52b090414e5"
+    },
+    {
+      "path": "raphire/Regfiles/Launch_File_Explorer_To_Downloads.reg",
+      "sha256": "fe4248350607e85b0c636ad98313918b1ae767708f4bb6ba06340830d2f7eb08"
+    },
+    {
+      "path": "raphire/Regfiles/Launch_File_Explorer_To_Home.reg",
+      "sha256": "a0182e878aa4d4fb6bb6bac37a0a97f2ae57a71f8386c32c9286e5582e14a39c"
+    },
+    {
+      "path": "raphire/Regfiles/Launch_File_Explorer_To_OneDrive.reg",
+      "sha256": "c9b7980d19e0fe397c8635ceb9745014e68b1626ab7b3e2d3211536387028d28"
+    },
+    {
+      "path": "raphire/Regfiles/Launch_File_Explorer_To_This_PC.reg",
+      "sha256": "1c28fc06aa1fc5c6821ea6c6bd39c1b1e0ea056cdf3aab40410c4ed6ca13578e"
+    },
+    {
+      "path": "raphire/Regfiles/MMTaskbarMode_Active.reg",
+      "sha256": "b013e81e26d1a1d909bdf464f89af928aff88e477ba7ebcdc35017058ae391f8"
+    },
+    {
+      "path": "raphire/Regfiles/MMTaskbarMode_All.reg",
+      "sha256": "f69898f53222609f6702e782b8acc51a86902581fbd8b8c58b89ea6a677b9a98"
+    },
+    {
+      "path": "raphire/Regfiles/MMTaskbarMode_Main_Active.reg",
+      "sha256": "8397cdb26611e64fe3a6c9249d1afc2b309143fed2f4e82304c4dc4dd7d0351a"
+    },
+    {
+      "path": "raphire/Regfiles/Prevent_Auto_Reboot.reg",
+      "sha256": "db8f561112903346d624dbd1ddba4edca256f06f80ae1a697ba01fabc51ae557"
+    },
+    {
+      "path": "raphire/Regfiles/Show_20_Tabs_In_Alt_Tab.reg",
+      "sha256": "3ec3d0cf06ea8899877e4554959abf168e0eefa664ff2c995bf6f8bea5b24f5f"
+    },
+    {
+      "path": "raphire/Regfiles/Show_3_Tabs_In_Alt_Tab.reg",
+      "sha256": "4502b3691a0f69e50d5cb06fd346cac846abfae81a6f30f96402623d3af2b3ad"
+    },
+    {
+      "path": "raphire/Regfiles/Show_5_Tabs_In_Alt_Tab.reg",
+      "sha256": "1a1339974b48b0335576db88fc0cd635f1ee1581f30b15e327a7f40d3f3201c1"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Drive_Letters_First.reg",
+      "sha256": "a98f249d5f230e3d708a49b5de4a4798fc6f7e189b2f18051f545583f54a372b"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Drive_Letters_Last.reg",
+      "sha256": "c1178ac07bec82b55a2d6dfc3b8c62c5010a55684dcbad108ad7f7d1eada2409"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Extensions_For_Known_File_Types.reg",
+      "sha256": "738cc481577e7d9160bec45282195314e5b2e67cfc9e1d5d423077b68442dc19"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Hidden_Folders.reg",
+      "sha256": "26614ffba5c3431e216cfb649f2e8e6742d659dfcd0281d85bd83e73955d1c2a"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Network_Drive_Letters_First.reg",
+      "sha256": "6a143be4872f4e692ddf06df3ad366a6f5eb29360df842c21f28efb32597a873"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Search_Box.reg",
+      "sha256": "d926e10b8d71a612323bc2f30a17c3e44901b709550a7b2a209a67c5da006b47"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Search_Icon.reg",
+      "sha256": "946ee4d19da8e433a32b46ed3635a0e727a5d77f9542e3942f51e3fcc7217426"
+    },
+    {
+      "path": "raphire/Regfiles/Show_Search_Icon_And_Label.reg",
+      "sha256": "3ce9d5b2cbea19f131026c23b88521c4a9bae98dd23ce624741da3d5a44020f9"
+    },
+    {
+      "path": "raphire/Regfiles/Start_AllApps_Category.reg",
+      "sha256": "47cf3a03ff1345b31715774ce93d1f52870aa8fc598d702f12e8351b2cd416c8"
+    },
+    {
+      "path": "raphire/Regfiles/Start_AllApps_Grid.reg",
+      "sha256": "059bec1ca07fbb6ec5a483e2e82b77f5578b32117a70348debfab2a00270e57c"
+    },
+    {
+      "path": "raphire/Regfiles/Start_AllApps_List.reg",
+      "sha256": "41c29a17fe425da9118f5ff422d21e3fe6ef9f83b35955e88f0a58fd8cf798a6"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Add_All_Folders_Under_This_PC.reg",
+      "sha256": "1ba445588abbdb83f34afd75fb342a948b235c98d70aa8400d7a8e78fd108185"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Align_Taskbar_Left.reg",
+      "sha256": "661f5429a350a151867fb49e41667fe28148d95a88d259e1300fbeef2dd43484"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Combine_MMTaskbar_Always.reg",
+      "sha256": "3f3fed0c8a82251e898867c2c898c7fee181aa42700ef58bb8d39cd2ba090788"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Combine_MMTaskbar_Never.reg",
+      "sha256": "fd137c15e58a488f72d085049ff49534198dd0dea9b200557f4b6a81611a3e83"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Combine_MMTaskbar_When_Full.reg",
+      "sha256": "94784f2a66cfe989e1c35ea9c7f5c5c92b1b974cb8d89ea32d570d96f93f81e1"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Combine_Taskbar_Always.reg",
+      "sha256": "1fb9e66b0f60e44e594e4cce0a630d802af1e004487e32061bd51d68293095aa"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Combine_Taskbar_Never.reg",
+      "sha256": "dc8227128a6e5e8daae0412751753e326bdc64afbbf765eff98e4d9f86add228"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Combine_Taskbar_When_Full.reg",
+      "sha256": "428614951ef3fb9f3ed836c687d83ae4f1132524424a3655cca104516069c6fc"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_AI_Recall.reg",
+      "sha256": "91cffcbef6ad9e19ae814b3fab42be0ffbe2ad5a6f1e9bc92a77d5ba0ff96371"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_AI_Service_Auto_Start.reg",
+      "sha256": "d153db56b2bbd005af47fd30a0a102f7f779324f237fdf086883ddc305594140"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Animations.reg",
+      "sha256": "da169e35c7e06b71d090e1633b5f2b02131f989e010b5d574a116752e089f335"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Bing_Cortana_In_Search.reg",
+      "sha256": "b76b141f97fc32b9bca93a4e20e1d79a6d8e579b610c638653f62b99367e8cf9"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Bitlocker_Auto_Encryption.reg",
+      "sha256": "efb411e654bc02de30d76fe22d3fa21398e2eb361d344ff2fae2614ab9b1bc83"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Brave_Bloat.reg",
+      "sha256": "2c8504174f124cf6cecda8332694282629b0c723239c622067ae0366813192d8"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Chat_Taskbar.reg",
+      "sha256": "e6383389ce114b216f53d23b425a8370678126224438613109823018a00cb19f"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Chrome_AI_Features.reg",
+      "sha256": "0ec7c331f99924e4266c8e6985c6f3caf9e791c8f375a64ee578f80673c5609b"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Click_to_Do.reg",
+      "sha256": "79ffea417a3c541a030f378b31251bc176cc105fc82794eafb49d47fd5c1541b"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Copilot.reg",
+      "sha256": "55716bc81467876b8918957dbdd8e41d2591ae4a283c7ade7c0d5f14f456b4cb"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Delivery_Optimization.reg",
+      "sha256": "54028dab9b1ab7437f91304959f17f13af2e6a9206d435ce515c6e27b6b1547b"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Desktop_Spotlight.reg",
+      "sha256": "6df27196e90e44acdda8fc529885d2fab516bf5aa30c7ecb25138adc2b07c2cd"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Device_Auto_App_Download.reg",
+      "sha256": "5a7a105241ae0b2137a9365e51d3f63786c7f6ac1ce0b01fc990b51a9a750947"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Driver_Updates.reg",
+      "sha256": "52603d0d8877c740cdf0b71cc025df76b6f6f3e588addb854b314f51f0efd325"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_DVR.reg",
+      "sha256": "53303447f416fbeec49047c9d8988933640ea8e368e432000726d22caf1a264f"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Edge_Ads_And_Suggestions.reg",
+      "sha256": "4d94e0b11b20fe8ba3870f407a708af87e34b1ab1397b342ef2f63c622f8c2c2"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Edge_AI_Features.reg",
+      "sha256": "964d4856a47a70eca8d03d57bbb4bb92f00782f8bc79d7f1dcfaf86aad5c3501"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Enhance_Pointer_Precision.reg",
+      "sha256": "7cb431e9763ec2301de2674d835f6d4ae66004b9d871a1df37226644e62c4d12"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Fast_Startup.reg",
+      "sha256": "ba8ac3589193fcaaa26ff5a88fdb4ccf973c7a64dec28b727cf5e2677a80b67c"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Find_My_Device.reg",
+      "sha256": "b100f8876be8efec490891c90ec04d10a3f0d677da102fdfc917ccf575383fbb"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Game_Bar_Integration.reg",
+      "sha256": "2356ac7deaf4071e2b5430b7449361fed7601d69ca1f9526f423a1de5b5439e3"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Give_access_to_context_menu.reg",
+      "sha256": "88fb1f6b2d32097b34c86a1340adf4fd4a5b39feec2eb1822f65d734f80b4834"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Include_in_library_from_context_menu.reg",
+      "sha256": "80a78262a8bd6607eea59be652855a9985cf94759588295883f3dad34c4ee9a3"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Location_Services.reg",
+      "sha256": "9c09d489e019425d0da82c0bd9eddea3ee6aa4a9f2f4ebf8298fc32aaa5611dd"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Lockscreen_Tips.reg",
+      "sha256": "cd7e723bf8bff5c5f40bec552f7694b18a0e26f76a851a0f9a9d77a6cead5850"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Modern_Standby_Networking.reg",
+      "sha256": "391d75c0f01edae5c0cb0adc3e0030fb70b7ddf048489bf9a5965c9d17f1e722"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Notepad_AI_Features.reg",
+      "sha256": "fcfe2894c9f9624044fadfe9752e2d4f05146407b32e876f78507d3e6d800c4d"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Notifications.reg",
+      "sha256": "9af9e41b02e55351b2651693bc70e11924c42fd7f7e0c9e919cce52cb8959d9f"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Paint_AI_Features.reg",
+      "sha256": "3d70eff5a7c977227978f48deaade6c49fa40342ebc10cd942af18edef6b7eef"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Phone_Link_In_Start.reg",
+      "sha256": "269334ccd7be2c9d92bb93e9fcb55891beb0b3a0b18151decb21e4482225ee14"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Settings_365_Ads.reg",
+      "sha256": "aeef35cb4b9f71e8e1e8276c620ba37585be191d9d0726448e82eaf349a77546"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Settings_Home.reg",
+      "sha256": "a4a0e091b1e10bff0dcead0df3e73cb579fa92da3b3154b36a5ae1a74e859cd6"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Share_from_context_menu.reg",
+      "sha256": "044b927474d977a14886176f36beb7291cf06a3524e3ba27af321f2e6fa87acc"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Show_More_Options_Context_Menu.reg",
+      "sha256": "c2743b9255fe984a0ce8778279c9e3df225ec7ee27416f138ad3b17b4fbcb6b5"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Snap_Assist.reg",
+      "sha256": "cd93bb87ae82dc27854c368dd0e7db074069a997dd2de242d18e4473c8d60d77"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Snap_Layouts.reg",
+      "sha256": "688056151f95df84e5145ee00e67c062d2ee177710ec9b147e6f452f3f1ff372"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Start_All_Apps.reg",
+      "sha256": "2a2779594d956ae3c561e0d43ae9efb7ac06bd4fca72a21be705d60b84c5cc1d"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Start_Recommended.reg",
+      "sha256": "aebc985ba37ce46f01c5e9f463648356245cc612d3a209fb5eb6e5f903b2385a"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Sticky_Keys_Shortcut.reg",
+      "sha256": "68dddb060c5416699fa105abca63f7d1916ab0bfb1323f519cf0638c57b9d798"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Storage_Sense.reg",
+      "sha256": "b79f356ec32e7a8255c6b9360a716ea6926e992ed1dab19b0ea58872d3766fd1"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Telemetry.reg",
+      "sha256": "9928a67507dcfd025957e362cb4fd56613b48e10511c6a30db03c75477f41535"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Transparency.reg",
+      "sha256": "f45f45d9a62d32e88a8e12052142e188cf68af49a8e3ff2e9a526340e9d57169"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Update_ASAP.reg",
+      "sha256": "0cef7e67c9c59407c81f25c637a0e5d51a3cd7ab7c0f800157b3281ac399f4fb"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Windows_Suggestions.reg",
+      "sha256": "cc8074544f5f41b061dad458e3d08633bf31eeea501cdecb6afe0e63ad50d932"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Disable_Window_Snapping.reg",
+      "sha256": "c965fea6649e07ad6e77b94d769dec52a481397e7b6dfc7674ad4792f35be765"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Enable_Dark_Mode.reg",
+      "sha256": "9c91399a22a8622cb94f56ccd4935f85c9437abd66295190072f50ff8e3b8ddd"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Enable_Desktop_Spotlight.reg",
+      "sha256": "05a68976a3010439ed85d0f24b0bb25796dc7c3531b49d1e786cd64595464f7d"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Enable_End_Task.reg",
+      "sha256": "216a26119ce395367f4eca1cd87bfbea20d522238756d5140d56114b7e06d131"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Enable_Last_Active_Click.reg",
+      "sha256": "156bc248e0ba81c5849f19476e931bae28aab36420e5281d5762e33f68c09ffb"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_3D_Objects_Folder.reg",
+      "sha256": "b8a7f7def95349d2b78763e4776ba131b0975e10406363f2b73d040576c76d8c"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Desktop_Spotlight_Icon.reg",
+      "sha256": "a67b88f80c372ab002837a87e3eee1c7971c424c213d42feebb4716cd0f6ad98"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Drive_Letters.reg",
+      "sha256": "156152311d93bf1dc481192c6ebb85fd3b2c6dee4fe4578dc6ca6a736a744e33"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_duplicate_removable_drives_from_navigation_pane_of_File_Explorer.reg",
+      "sha256": "bb5102fcb1c0ed39abbcb8306387444cc6c2349767623dfdbd32090af47ae70b"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Gallery_from_Explorer.reg",
+      "sha256": "cab23f57270affa8dc43a2bd27965feb3af0ea0ddeb4b1cf516e7cb45f7b59e9"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Home_from_Explorer.reg",
+      "sha256": "96830868500994a7353cb579ed7aed3667be76ba87d7b3ec93bc8a3e2ed73bad"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Music_Folder.reg",
+      "sha256": "e85608a743a148d5e77d4c29810b3583898885699bfed5bfb18407a65103edd4"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Onedrive_Folder.reg",
+      "sha256": "72edb60188c075c318d3cb975344f845fdffd7fd1da5cf269fe9260dc449cf44"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Search_Taskbar.reg",
+      "sha256": "87a2080aff646230b47456bb5c0820f535c33ff5921c859aad29c59ab56f809b"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Tabs_In_Alt_Tab.reg",
+      "sha256": "6d36359d7a925a9e2364ec6ae4ff15cd7cc1e24400d9538e94611b60294a6a33"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Hide_Taskview_Taskbar.reg",
+      "sha256": "dad7ce740f06bebc29d79da1d9018ff68fa19154eca55ace48147605a2214b5e"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Launch_File_Explorer_To_Downloads.reg",
+      "sha256": "93209f3e8202e4816e35f8fcb19d1ccfbb3aeae2622346dbec5caf7efd77d8fa"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Launch_File_Explorer_To_Home.reg",
+      "sha256": "1bb813f277465398011d7b998c269dc1e0c471e3ebcb7390ce18e2a7c3bf44a4"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Launch_File_Explorer_To_OneDrive.reg",
+      "sha256": "88ea7f46016e9c3f1aa011d8c623885860c5f26acec0461e64a51ca0162f3dae"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Launch_File_Explorer_To_This_PC.reg",
+      "sha256": "193fc4bcf9de0e71e171930c424033c27388bd635261273457db0955554a0dc5"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/MMTaskbarMode_Active.reg",
+      "sha256": "19e7af6b3788fc91859a5a63d9a14cebeed2c4fd61efd87551b7ec0c0c13e2b6"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/MMTaskbarMode_All.reg",
+      "sha256": "a4c83997441b3c26e3d7458929cb04ef5e8e7f3f6b1f808c3eeb404c1fc46b7a"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/MMTaskbarMode_Main_Active.reg",
+      "sha256": "8e4ebace9cfc22f8cfaf67c219b89e5d361da2594599316334fcb992f68abd05"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Prevent_Auto_Reboot.reg",
+      "sha256": "db8f561112903346d624dbd1ddba4edca256f06f80ae1a697ba01fabc51ae557"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_20_Tabs_In_Alt_Tab.reg",
+      "sha256": "6c306fdd68cca4176d96580794c3741366d032b8980257de41a5a8c9aa37dd58"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_3_Tabs_In_Alt_Tab.reg",
+      "sha256": "35e8670856a4dc8de968d7e4ff736816c8435efd0e52edd85f3f0ab138d85b24"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_5_Tabs_In_Alt_Tab.reg",
+      "sha256": "b5867e1709d480fd3218c483ecd134aa65e7a4604e9a49ef6fb293e342738f1c"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Drive_Letters_First.reg",
+      "sha256": "fe7ec6815749040ddf62cd6ac88403260e818803dbded7c0c7f345ffc25e5f7d"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Drive_Letters_Last.reg",
+      "sha256": "4dba240546bdc08ae88e203dd697da63bdc4177e84c30247fac35aff5b5cd2fc"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Extensions_For_Known_File_Types.reg",
+      "sha256": "11763f3126c501d480453b7d42771509e9b8787e83ec5d4d29112860442a8d26"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Hidden_Folders.reg",
+      "sha256": "0661f977386239b249ee4788ad31f24bbf38e603d6b92cd03198e94a36a9f490"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Network_Drive_Letters_First.reg",
+      "sha256": "a5d2ea89288bcbe0546b98244570eb48fda164c966f73dbadd0ca00e6b332bf8"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Search_Box.reg",
+      "sha256": "521417b68482f1d4c52f2b40424d546aa2c16d688d437bffb240c0169dde0f3c"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Search_Icon.reg",
+      "sha256": "ec8e81f59a1c78a448a3ac46db9fede9f28108a800bc3a99bf1145b98023c6d9"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Show_Search_Icon_And_Label.reg",
+      "sha256": "73680d11009615af3487abf7e5478e9010dabd5a16d8737ee7f0d0fa56434b23"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Start_AllApps_Category.reg",
+      "sha256": "815e7c2dad559a1c0262a7703b4f3545f5851f52250fbcf5f4d4cf1bff5d1dff"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Start_AllApps_Grid.reg",
+      "sha256": "720a163ed9578435230d450655942940cf3ebd4a47899faf8ddcb65cdd88ca22"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Start_AllApps_List.reg",
+      "sha256": "7de9aeecee0a4f25cd25faf674e9b12e959975a01c7329e44bb15892875c7861"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Align_Taskbar_Center.reg",
+      "sha256": "9e8aaf5bef1d4196614a4e33794f5103cd69b8ea44192f8c8e52b7657233f76d"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Allow_Auto_Reboot.reg",
+      "sha256": "015d6a8bfce9c0f2611c741dc6198eec94a09b75bcd618d2508fbb787f273ec5"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Allow_Edge_Telemetry.reg",
+      "sha256": "ae8b19a261787c167facc7ab0efdec57d590f039ea66e64f585b59a19318ba21"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Disable_End_Task.reg",
+      "sha256": "a58a6782908badbe76cd57462b62c43a4cfead86c4f7c4a7e6aa854b4a5934df"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Disable_Last_Active_Click.reg",
+      "sha256": "626e215e62d3f92ad3635022dfe6ce0f5a08d3e7a7aa8594f2de522a4a37c17c"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Activity_History.reg",
+      "sha256": "b4eb37533062f1e014ca00d7b9b9d6a85754ec5d45fb3e3c50b9b0ce2a2cca94"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_AI_Recall.reg",
+      "sha256": "60eeb2f318d8abd148f583a61c677dc4d90d8d592265269f7a7b7e7eed1c38a0"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_AI_Service_Auto_Start.reg",
+      "sha256": "fd2cebddd7ca793467ffe77a89d8c7687d74cce603fe4ae2171a7d8ecfe4ae5c"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Animations.reg",
+      "sha256": "be4d0d22ffab2777bf47db34a7834391d7403c73c7300e262de8db2062edfddf"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Bing_Cortana_In_Search.reg",
+      "sha256": "50983a408b66378584c9d4cd1ae449bf7360fc5c72c33dc4de47fa9a1717325f"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Bitlocker_Auto_Encryption.reg",
+      "sha256": "e94923b1fb640792852aa4f3b69a90ae519a727a690369e6ec95dabf042e0a64"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Brave_Bloat.reg",
+      "sha256": "222781ee45faedfae6d13c3dc69b345d132cb35e32adb31c33851e36ae9be3d6"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Chat_Taskbar.reg",
+      "sha256": "00414383e27a13f5c4795636740a75354c6dcc004fd19710de898fccb8ffa2db"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Chrome_AI_Features.reg",
+      "sha256": "295857431f3bb44b28fd8189da5af724b55695487684713727b85cbe42e46e70"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Click_to_Do.reg",
+      "sha256": "f82c2b1e7ac31f421f31435a1d33d113176633935329f968a012127486068796"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Copilot.reg",
+      "sha256": "fb088ec98b7f4f88a256439894132e51b16520b17ca5e32586fb495e755488df"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Delivery_Optimization.reg",
+      "sha256": "b566e39bbbb62c410536b707637101b3e25b218e5e9b4eadbd7dfa0ae02b6803"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Desktop_Spotlight.reg",
+      "sha256": "9d5b582c4d3ac84327b153e63a41c98774c73393a365ac064c017f573db91059"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Device_Auto_App_Download.reg",
+      "sha256": "9b45293205eb17659341fc1504af73817e1c8ff201d7e6d1939374ad6f21b2d1"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Driver_Updates.reg",
+      "sha256": "f1dd06e38ed8a4715d1793fd3af55740f90b15f21d75a49d6b51adced2071055"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_DVR.reg",
+      "sha256": "a4ada8ae6cad778d8130bf320a64ba69e3a99c7d3a689d83fe509bffcaf69d1f"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Edge_Ads_And_Suggestions.reg",
+      "sha256": "35353a0f48b7c1f2f3ce9ec994d0a1d7895336311b530938c350ad820b33fb45"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Edge_AI_Features.reg",
+      "sha256": "9d9c29c92d80f2a84fb46e5c62efe88fc2e9bda53e2602505f7572d200c23434"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Enhance_Pointer_Precision.reg",
+      "sha256": "a0a1b2cbf871cf64b4ad49c9811f261f795186a689e6c0a9164fdb52c73d9256"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Fast_Startup.reg",
+      "sha256": "a391095c4e1aeae765cfe3f80d1c538cd93e5ed5a3f6494d5c4ca1ef02eeb3b5"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Find_My_Device.reg",
+      "sha256": "394aba1108735517eff831b79258fb7a92a6eda3c5f5217314a43e6215cc6921"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Game_Bar_Integration.reg",
+      "sha256": "ce670bbc2ed259c52aa9bfdbb3451163b23bc9b0929eaf54cb559c73a7651f94"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Give_access_to_context_menu.reg",
+      "sha256": "870b5b6c86d0b4a811e20c9515b92c4c874f9a68ea258bee4f3951741439a548"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Include_in_library_in_context_menu.reg",
+      "sha256": "debf63412835111b4983f16aba00ed6a70aa4588d16000bd1422ce5daadee0eb"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Light_Mode.reg",
+      "sha256": "61502f3cfa7efc8f5fadfda49dfb79ed64311324f3ea94167c5fe648045231f1"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Location_Services.reg",
+      "sha256": "1f2b2dbba2b8b1e9c3a3fa4e7571a2fe15015c5de472f5541d846cef38247d61"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Lockscreen_Tips.reg",
+      "sha256": "c4b0d0d45da507fb9ca8278a77dd5997f96c76bd9b9074595f03a2e6caed9e19"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Modern_Standby_Networking.reg",
+      "sha256": "883ccd6f19d26864181eb366539f43e14aaf5fcb8dbfb43728ce9c0c5f34b09a"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Notepad_AI_Features.reg",
+      "sha256": "3ed37ce8b1a764c3ae379772896add0b08ff6ee0732007035c9590cb22ea5e92"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Notifications.reg",
+      "sha256": "f1e7f14f2b91fdaf89a200c1022b6f0639f7d4bf70e367dbf43f43b5d35c0c1f"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Paint_AI_Features.reg",
+      "sha256": "3269f31592ed94b667ce0813f2f9be28421a30804666d58d97770919585554ea"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Phone_Link_In_Start.reg",
+      "sha256": "67efc2000d37965fd6971e2ea036ef49c46b851c3b6a4e4ec4fbe2f04ed7bf09"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Settings_365_Ads.reg",
+      "sha256": "718f3e9746dc3deb44bb8cc006c52dcd8930637ac5409c5b6cf1bcdf0b48da2a"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Settings_Home.reg",
+      "sha256": "f9e9ba17577e887bcf1767bc7d207ae24f6ba6ad2035e50a4f58ceb81b0009d1"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Share_in_context_menu.reg",
+      "sha256": "6e01fa1b8588c0fd7f54826cb375422ed5cb6a7259e52c2eb2eb6e8bc47c4b26"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Snap_Assist.reg",
+      "sha256": "5e08197b96b78bfb7e59125400721fcbb3e04f2a11a32e6a7ca33aac3b1ea04c"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Snap_Layouts.reg",
+      "sha256": "4accb492519e040297a66c09430414331eba917a5822d8fe0a19c4f5c483efa2"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Start_All_Apps.reg",
+      "sha256": "63f879b3b9a2249ca6e2a41e18c0951c1a336d537003f3907e6de0fb68daa49c"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Start_Recommended.reg",
+      "sha256": "20d83c60f3aa9f47a0d5ced8116054086db92dfd24d01f09ed782459a4ba6957"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Sticky_Keys_Shortcut.reg",
+      "sha256": "f632ba3945a07ea9e9a91f0c2f3a3e208c7884ef21cda99e3a8aa78af8867c53"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Storage_Sense.reg",
+      "sha256": "d7f5d591d84ef421e0653a073a1449c374f2ccc7d4c110a2f61162b5debc09c9"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Telemetry.reg",
+      "sha256": "47cea52289ec5287f67849cd5f7f5c95a58b8d462a81d10429b430269e166040"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Transparency.reg",
+      "sha256": "5e94a44296b63a54f592f27b55d8596c219436b4ef2b7570023bd11cabce3155"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Update_ASAP.reg",
+      "sha256": "83de0215134a28967f23bd212ce2e8c702a57ccf705020e737b8f77675f11bdf"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_W11_Style_Context_Menu.reg",
+      "sha256": "dff753a0033d444826411fda4b729949bada511e89e260eb0f12cba0ac323e39"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Windows_Suggestions.reg",
+      "sha256": "095c586108aff5f069aa2837be738994ae57f70ec9eb7cd7fc173d8f20359ae3"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Enable_Window_Snapping.reg",
+      "sha256": "342088413bdea47284ec88f31125e542ee05a4ba0643636fba0e678ad6e48ffd"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Hide_Extensions_For_Known_File_Types.reg",
+      "sha256": "cd2750044e22b1d55f3cd54c9c814c7c1b0c7cf719de6e444489f210318fd2be"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Hide_Hidden_Folders.reg",
+      "sha256": "507459cd65263fa89bb401052e508a3bdd8a426dcaeaedcc55d6480568b6f9dd"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Remove_All_Folders_Under_This_PC.reg",
+      "sha256": "bce6f567c8d0eba4511f5376bd53137b9c0ccbf03f3f864a042380e102c3d746"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_3D_Objects_Folder.reg",
+      "sha256": "6270c703c17b6178a122a66a4666cf2d09a69c48043ccb1c2ac63a1a33715589"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_Desktop_Spotlight_Icon.reg",
+      "sha256": "7e2b2ee0755497c1caccd1d6ca20f6e3cbccd4e5d791f9b888f9b89e9f984ff2"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_Drive_Letters_Last.reg",
+      "sha256": "c1178ac07bec82b55a2d6dfc3b8c62c5010a55684dcbad108ad7f7d1eada2409"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_duplicate_removable_drives_in_navigation_pane_of_File_Explorer.reg",
+      "sha256": "ba63c4aa4e9af5c9cf34224b68859c64035163484f9a71c11ceec3870d861d06"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_Gallery_in_Explorer.reg",
+      "sha256": "34a65489c9cbb0de468f355653e7f6ff9e385cf47cb025db939e1ad5835034e5"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_Home_in_Explorer.reg",
+      "sha256": "d1cbcd3b88317bb67fa233b872d2128234de5be90c844623275b78f1fb657294"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_Music_Folder.reg",
+      "sha256": "dd726a194af3c5fd58caecaf10f7ed5d786ba657e7bc25aa2155e274a32f132c"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_Onedrive_folder.reg",
+      "sha256": "788cba9cf73daa8aaa8ce8b24bc2c521d8d380c58087a8fa39da69834aafbc3c"
+    },
+    {
+      "path": "raphire/Regfiles/Undo/Show_Taskview_Taskbar.reg",
+      "sha256": "93246788c2dab7327d78453ca7d38535321d5411726875770530e61d4c8f8f4b"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Undo/Enable_Desktop_Spotlight.reg",
+      "sha256": "05a68976a3010439ed85d0f24b0bb25796dc7c3531b49d1e786cd64595464f7d"
+    },
+    {
+      "path": "raphire/Regfiles/Sysprep/Undo/Show_Desktop_Spotlight_Icon.reg",
+      "sha256": "7a0622deae3eeb94746f8b6d7ab2d149a58f27eab95f615cce6dc241b84f50de"
+    }
+  ]
+}
