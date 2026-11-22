@@ -59,10 +59,14 @@ Para preparar uma cópia de desenvolvimento, extraia o pacote completo e copie a
 
 ## Licenciamento
 
-A licença do **código próprio do OuO ainda está em definição**. Nenhuma licença única foi aplicada ao projeto inteiro nesta publicação.
+O **código próprio do OuO tem uso gratuito e código visível, com reutilização reservada**, conforme a [Licença de Uso Gratuito e Código Visível](LICENSE.md). É permitido usar o programa, inclusive na atividade profissional, e compartilhar o pacote oficial íntegro. Reaproveitar o código original em outros projetos ou criar distribuições modificadas exige autorização, ressalvados os direitos legais e as permissões da plataforma.
 
 Os componentes de terceiros mantêm suas respectivas licenças e atribuições. Os avisos estão em [THIRD-PARTY.md](THIRD-PARTY.md), [licenses](licenses) e [third-party-source](third-party-source), incluindo fontes e instruções dos auxiliares distribuídos.
 
 ## Overclock Informática
 
 [Página de links e contato](https://linkme.bio/overclockinformatica) · [Instagram](https://www.instagram.com/oc.informatica/)
+
+## Próxima versão
+
+Os pedidos de 22/11/2026 e seus critérios de conclusão estão em [PROXIMA-VERSAO.md](PROXIMA-VERSAO.md). A licença já foi definida; os demais itens dessa rodada estão planejados para a próxima implementação.
