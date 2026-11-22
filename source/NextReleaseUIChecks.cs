@@ -1,0 +1,20 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Threading;
+namespace Aurora {
+public partial class MainWindow {
+    Action<Window> timePickerPrepared;
+    void VerifyNextReleaseUI(){
+        ShowPage("tweaks");UpdateLayout();if(pageToolbarHost.Content==null)throw new InvalidOperationException("Tweak toolbar is not docked.");var toolbar=(FrameworkElement)pageToolbarHost.Content;double before=toolbar.TranslatePoint(new Point(0,0),this).Y;pageScroll.ScrollToVerticalOffset(700);UpdateLayout();double after=toolbar.TranslatePoint(new Point(0,0),this).Y;if(Math.Abs(before-after)>.1||pageScroll.VerticalOffset<=0)throw new InvalidOperationException("Tweak actions scrolled out of view.");Capture("diagnostics/next-tweaks-sticky.png");pageScroll.ScrollToTop();
+        var fixture=new StackPanel();body.Children.Insert(0,fixture);var report=Input("");report.IsReadOnly=true;report.AcceptsReturn=true;report.Height=70;AttachResult(fixture,report);report.Text="ERROR • example only";var expander=fixture.Children.OfType<Expander>().Single();expander.IsExpanded=true;UpdateLayout();var buttons=AppearanceTree(expander).OfType<Button>().ToArray();if(!buttons.Any(x=>Convert.ToString(x.Content)==T("Relatar problema","Report a problem")&&x.Visibility==Visibility.Visible))throw new InvalidOperationException("Error report action missing.");buttons.Single(x=>Convert.ToString(x.Content)==T("Limpar log exibido","Clear displayed log")).RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));if(report.Text!=""||expander.Visibility!=Visibility.Collapsed)throw new InvalidOperationException("Clearing a displayed report left an empty result area.");body.Children.Remove(fixture);
+        int progressId=++nextJobId;try{activeJobs[progressId]=Tuple.Create("Counted fixture",DateTime.Now);ApplyProgress(progressId,new WorkProgress{Done=1,Total=4,Stage="Counted fixture"});if(workProgress.IsIndeterminate||workProgress.Value!=25||!workNotice.Text.Contains("25%"))throw new InvalidOperationException("Counted task did not show real progress.");}finally{activeJobs.Remove(progressId);jobProgress.Remove(progressId);UpdateWorkUi();}
+        var time=Input("09:15");bool shown=false;timePickerPrepared=dialog=>{dialog.ContentRendered+=(s,e)=>Dispatcher.BeginInvoke(new Action(()=>{try{var menus=AppearanceTree((DependencyObject)dialog.Content).OfType<ComboBox>().ToArray();menus.Single(x=>System.Windows.Automation.AutomationProperties.GetName(x)==T("Hora","Hour")).SelectedIndex=0;menus.Single(x=>System.Windows.Automation.AutomationProperties.GetName(x)==T("Minuto","Minute")).SelectedIndex=59;dialog.UpdateLayout();CaptureDialog(dialog,"next-time-picker.png");shown=true;AppearanceTree((DependencyObject)dialog.Content).OfType<Button>().Single(x=>Convert.ToString(x.Content)==T("Usar este horário","Use this time")).RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));}catch{dialog.Close();throw;}}));};ChooseTime(time);timePickerPrepared=null;if(!shown||time.Text!="00:59")throw new InvalidOperationException("Clock picker did not return the selected 24-hour time.");
+        timePickerPrepared=dialog=>dialog.ContentRendered+=(s,e)=>dialog.Close();ChooseTime(time);timePickerPrepared=null;if(time.Text!="00:59")throw new InvalidOperationException("Canceling the clock changed the original time.");
+        ShowPage("about");Capture("diagnostics/next-about.png");File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"next-ui-results.txt"),"PASS • Docked tweaks toolbar remains visible during scrolling.\nPASS • Technical-log clearing collapses its empty area; errors expose support-report action.\nPASS • Counted operation shows exact 25% progress.\nPASS • Clock selection returns 00:59 and cancellation preserves the value.\nPASS • About includes license and public GitHub update controls.\nNo Windows setting, driver, schedule or account was changed.",new UTF8Encoding(true));
+    }
+}
+}

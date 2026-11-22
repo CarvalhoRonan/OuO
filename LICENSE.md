@@ -2,7 +2,7 @@
 
 Versão 1.0 — 22 de novembro de 2026.
 
-Copyright © 2026 Overclock Informática. Direitos reservados sobre o código original do OuO — Overclock Utility Optimizer, ressalvadas as permissões abaixo e os direitos dos componentes com outras licenças.
+Copyright © 2026 Overclock Informática. Direitos reservados sobre o código original do OuO — Overclock's Utility Optimizer, ressalvadas as permissões abaixo e os direitos dos componentes com outras licenças.
 
 ## 1. Abrangência
 

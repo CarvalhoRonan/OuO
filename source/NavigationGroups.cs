@@ -13,18 +13,21 @@ public partial class MainWindow {
     string navigationQuery="";TextBox navigationSearch;
     string NavigationSectionId(string id){
         if(id=="dashboard"||id=="recommendations")return "overview";
-        if(new[]{"processes","stability","storage","cloud-storage"}.Contains(id))return "diagnosis";
-        if(new[]{"performance","tweaks","repair","repair-advanced","protection","cleanup","upgrade"}.Contains(id))return "maintenance";
-        if(id=="browser"||id=="network"||id=="dns")return "connection";
-        if(new[]{"startup","apps","apps-updates","office","bloat","recovery","drivers"}.Contains(id))return "applications";
+        if(new[]{"performance","tweaks","startup","privacy"}.Contains(id))return "performance";
+        if(new[]{"storage","cloud-storage","cleanup"}.Contains(id))return "storage";
+        if(new[]{"processes","stability","repair","repair-advanced","protection","upgrade","network"}.Contains(id))return "windows";
+        if(id=="browser"||id=="dns")return "connection";
+        if(id=="drivers")return "drivers";
+        if(new[]{"apps","apps-updates","office","bloat","recovery"}.Contains(id))return "applications";
         return "preferences";
     }
-    string NavigationSectionName(string id){switch(id){case "overview":return T("Visão do computador","Computer overview");case "diagnosis":return T("Diagnóstico","Diagnostics");case "maintenance":return T("Manutenção do Windows","Windows maintenance");case "connection":return T("Internet e impressão","Internet and printing");case "applications":return T("Aplicativos e drivers","Apps and drivers");default:return T("Configurações e histórico","Settings and history");}}
+    string NavigationSectionName(string id){switch(id){case "overview":return T("Início","Home");case "performance":return T("Desempenho","Performance");case "storage":return T("Armazenamento","Storage");case "windows":return T("Windows e diagnóstico","Windows and diagnostics");case "connection":return T("Rede e navegação","Network and browsing");case "drivers":return T("Drivers","Drivers");case "applications":return T("Programas","Programs");default:return T("Configurações","Settings");}}
     void InitializeNavigation(){
         navigationButtons.Clear();navigationSections.Clear();
         var searchLabel=Text(T("Buscar função","Find a tool"),11,Muted);searchLabel.Margin=new Thickness(8,0,8,3);nav.Children.Add(searchLabel);
         navigationSearch=Input(navigationQuery);navigationSearch.Padding=new Thickness(8);navigationSearch.Margin=new Thickness(0,0,0,12);navigationSearch.ToolTip=T("Digite parte do nome de uma tela.","Type part of a page name.");nav.Children.Add(navigationSearch);
         navigationSearch.TextChanged+=(s,e)=>{navigationQuery=navigationSearch.Text;FilterNavigation();};
+        foreach(string categoryId in new[]{"overview","performance","storage","applications","drivers","windows","connection","preferences"}){string category=categoryId;var section=new NavigationSection{Id=category,Items=new StackPanel()};section.Header=Button("",()=>{if(openNavigationSections.Contains(category))openNavigationSections.Remove(category);else openNavigationSections.Add(category);FilterNavigation();});section.Header.HorizontalContentAlignment=HorizontalAlignment.Left;section.Header.HorizontalAlignment=HorizontalAlignment.Stretch;section.Header.Background=Brushes.Transparent;section.Header.BorderThickness=new Thickness(0);section.Header.Padding=new Thickness(5,8,5,8);section.Header.Margin=new Thickness(0,3,0,0);section.Header.FontSize=11;section.Header.FontWeight=FontWeights.SemiBold;nav.Children.Add(section.Header);nav.Children.Add(section.Items);navigationSections[category]=section;if(NavigationSectionId(current)==category)openNavigationSections.Add(category);}
     }
     void BuildNavigationEntry(string id,string label){
         string category=NavigationSectionId(id);NavigationSection section;

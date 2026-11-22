@@ -18,9 +18,9 @@ using System.Xml.Linq;
 using System.Runtime.InteropServices;
 using Microsoft.Win32;
 
-[assembly:System.Reflection.AssemblyTitle("OuO — Overclock Utility Optimizer")]
-[assembly:System.Reflection.AssemblyVersion("1.0.0.0")]
-[assembly:System.Reflection.AssemblyFileVersion("1.0.0.107")]
+[assembly:System.Reflection.AssemblyTitle("OuO — Overclock's Utility Optimizer")]
+[assembly:System.Reflection.AssemblyVersion("1.1.0.0")]
+[assembly:System.Reflection.AssemblyFileVersion("1.1.0.0")]
 
 namespace Aurora {
 public static class Program {
@@ -49,7 +49,7 @@ public static class Program {
             app.DispatcherUnhandledException += (s,e) => {if(args.Contains("--verify-ui")||args.Contains("--soak-ui")){File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui-unhandled.txt"),e.Exception.ToString());e.Handled=true;app.Shutdown(2);return;}MainWindow owner=app.MainWindow as MainWindow;if(owner!=null)owner.ShowNotice("ERROR • "+e.Exception.Message,"OuO");else MessageBox.Show(e.Exception.Message,"OuO"); e.Handled=true; };
             MainWindow window = new MainWindow(args.Contains("--preview") || args.Contains("--verify-ui") || args.Contains("--soak-ui"),args.Contains("--tray"));
             app.SessionEnding+=(s,e)=>window.exitForSessionEnd();
-            app.Run(window); return 0;
+            int appCode=app.Run(window);if(args.Contains("--verify-ui")){string uiReport=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui-results.txt");return appCode==0&&File.Exists(uiReport)&&File.ReadAllText(uiReport).StartsWith("PASS",StringComparison.Ordinal)?0:2;}return appCode;
         } catch(Exception e) { File.WriteAllText(Path.Combine(Path.GetTempPath(),"Aurora-error.txt"),e.ToString()); return 1; }
     }
 }
@@ -58,7 +58,7 @@ public static class L {
     public static string T(string pt,string en) { UiLanguage.Remember(pt,en); return Pt ? pt : en; }
 }
 public sealed class Machine {
-    public string Caption="Windows", Version="", Arch="", Cpu="", Gpu="", Board="";
+    public string Caption="Windows", Version="", Arch="", Cpu="", Gpu="", Board="", BootTime="";
     public int Build; public ulong Total, Free; public bool Admin, Winget;
     public static IEnumerable<ManagementObject> Query(string path,string query) {
         using(ManagementObjectSearcher search = new ManagementObjectSearcher(path,query))
@@ -72,8 +72,8 @@ public sealed class Machine {
     }
     public static Machine Detect() {
         Machine m=new Machine();
-        try { foreach(var o in Query("root\\cimv2","SELECT Caption,Version,BuildNumber,OSArchitecture,TotalVisibleMemorySize,FreePhysicalMemory FROM Win32_OperatingSystem")) using(o) {
-            m.Caption=Value(o,"Caption");m.Version=Value(o,"Version");m.Arch=Value(o,"OSArchitecture");
+        try { foreach(var o in Query("root\\cimv2","SELECT Caption,Version,BuildNumber,OSArchitecture,TotalVisibleMemorySize,FreePhysicalMemory,LastBootUpTime FROM Win32_OperatingSystem")) using(o) {
+            m.BootTime=Value(o,"LastBootUpTime");m.Caption=Value(o,"Caption");m.Version=Value(o,"Version");m.Arch=Value(o,"OSArchitecture");
             Int32.TryParse(Value(o,"BuildNumber"),out m.Build);UInt64.TryParse(Value(o,"TotalVisibleMemorySize"),out m.Total); UInt64.TryParse(Value(o,"FreePhysicalMemory"),out m.Free);
         }} catch { m.Version=Environment.OSVersion.Version.ToString(); }
         if(m.Build==0) {m.Build=Environment.OSVersion.Version.Build;m.Version=Environment.OSVersion.Version.ToString();m.Caption=m.Build>=22000?"Windows 11":m.Build>=10240?"Windows 10":m.Build>=9600?"Windows 8.1":m.Build>=9200?"Windows 8":m.Build>=7600?"Windows 7":"Windows";}
@@ -99,7 +99,7 @@ public static class Native {
 public sealed class CommandResult { public int Code; public string Output; }
 public static class Runner {
     public static CommandResult Run(string file,string arguments,int timeout,string workingDirectory=null,Action<string> received=null,System.Threading.CancellationToken cancellation=default(System.Threading.CancellationToken),bool allowBackground=false) {
-        StringBuilder output=new StringBuilder(); object gate=new object();int stdoutEnded=0,stderrEnded=0;
+        Action<WorkProgress> commandProgress=WorkReporting.Sink;StringBuilder output=new StringBuilder(); object gate=new object();int stdoutEnded=0,stderrEnded=0;
         ProcessStartInfo info=new ProcessStartInfo(file,arguments); info.UseShellExecute=false;info.CreateNoWindow=true;
         if(!String.IsNullOrEmpty(workingDirectory))info.WorkingDirectory=workingDirectory;
         info.RedirectStandardOutput=true;info.RedirectStandardError=true;
@@ -108,8 +108,8 @@ public static class Runner {
         if(Path.GetFileName(file).Equals("sfc.exe",StringComparison.OrdinalIgnoreCase)){info.StandardOutputEncoding=Encoding.Unicode;info.StandardErrorEncoding=Encoding.Unicode;}
         using(Process p=new Process()) {
             p.StartInfo=info;
-            p.OutputDataReceived+=(s,e)=>{if(e.Data==null)System.Threading.Interlocked.Exchange(ref stdoutEnded,1);else{lock(gate)output.AppendLine(e.Data);if(received!=null)try{received(e.Data);}catch{}}};
-            p.ErrorDataReceived+=(s,e)=>{if(e.Data==null)System.Threading.Interlocked.Exchange(ref stderrEnded,1);else{lock(gate)output.AppendLine(e.Data);if(received!=null)try{received(e.Data);}catch{}}};
+            p.OutputDataReceived+=(s,e)=>{if(e.Data==null)System.Threading.Interlocked.Exchange(ref stdoutEnded,1);else{lock(gate)output.AppendLine(e.Data);if(commandProgress!=null){var update=WorkReporting.FromToolLine(e.Data,file);if(update!=null)try{commandProgress(update);}catch{}}if(received!=null)try{received(e.Data);}catch{}}};
+            p.ErrorDataReceived+=(s,e)=>{if(e.Data==null)System.Threading.Interlocked.Exchange(ref stderrEnded,1);else{lock(gate)output.AppendLine(e.Data);if(commandProgress!=null){var update=WorkReporting.FromToolLine(e.Data,file);if(update!=null)try{commandProgress(update);}catch{}}if(received!=null)try{received(e.Data);}catch{}}};
             p.Start();p.BeginOutputReadLine();p.BeginErrorReadLine();
             using(var job=new OwnedCommandJob(p)){var watch=Stopwatch.StartNew();bool ended=false;while(!cancellation.IsCancellationRequested&&watch.ElapsedMilliseconds<timeout){if(p.WaitForExit((int)Math.Min(200,Math.Max(1,timeout-watch.ElapsedMilliseconds)))){ended=true;break;}}
                 while(ended&&!allowBackground&&job.Active>0&&(stdoutEnded==0||stderrEnded==0)&&watch.ElapsedMilliseconds<timeout&&!cancellation.IsCancellationRequested)System.Threading.Thread.Sleep(20);
@@ -170,7 +170,7 @@ public sealed partial class Journal {
         RegistrySnapshot snapshot=store.Read(hive,path,name);
         object previous=snapshot.Value;RegistryValueKind oldKind=snapshot.Kind;bool existed=snapshot.Exists;
         XElement record=new XElement("change",new XAttribute("title",title),new XAttribute("hive",hive),new XAttribute("path",path),new XAttribute("name",name),new XAttribute("existed",existed),new XAttribute("kind",oldKind),new XAttribute("state","prepared"),new XElement("previous",previous==null?"":Convert.ToString(previous,CultureInfo.InvariantCulture)));
-        if(existed)record.Add(RegistryValueCodec.Encode(previous,oldKind));
+        if(existed)record.Add(RegistryValueCodec.Encode(previous,oldKind));TagChange(record);record.Add(new XElement("after",new XAttribute("exists",true),new XAttribute("kind",kind),RegistryValueCodec.Encode(value,kind)));
         string file=Path.Combine(Folder,DateTime.UtcNow.ToString("yyyyMMddHHmmssfffffff")+"-"+Guid.NewGuid().ToString("N")+".xml");AtomicFiles.SaveXml(record,file);
         store.Set(hive,path,name,value,kind);
         if(!RegistryValueCodec.Equal(store.Read(hive,path,name).Value,value)) throw new IOException("Registry verification failed");
@@ -207,29 +207,29 @@ public partial class MainWindow:Window {
     readonly Journal journal=new Journal(Environment.GetCommandLineArgs().Any(x=>x=="--preview"||x=="--verify-ui"||x=="--soak-ui")?Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"diagnostics","History"):Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"AuroraUtility","History"));
     Machine machine; bool dark=true,busy=false,preview,compact; string current="dashboard",accentName="menta";
     Grid shell; StackPanel nav,body; TextBlock status,metricCpu,metricRam,metricGpu,metricTemp,tempCpu,tempGpu,tempVrm,hardwareIdentity;ProgressBar workProgress;TextBlock workNotice;DispatcherTimer activityTimer;long previousIdle,previousKernel,previousUser;
-    readonly SensorClient sensors=new SensorClient();string[] lastSample;
-    TextBox console; PerformanceCounter cpuCounter; DispatcherTimer timer; bool sampling;
+    readonly SensorClient sensors=new SensorClient();string[] lastSample;DateTime lastExternalSensorRead=DateTime.MinValue;
+    TextBox console; DispatcherTimer timer; bool sampling;
     Brush Bg,Surface,Ink,Muted,Accent;SolidColorBrush positiveStateBrush;bool positiveStateDark;Brush StateGreen{get{if(positiveStateBrush==null||positiveStateDark!=dark){positiveStateDark=dark;positiveStateBrush=new SolidColorBrush((System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(dark?"#71DCC3":"#087963"));positiveStateBrush.Freeze();}return positiveStateBrush;}}
     public MainWindow(bool previewMode,bool startInTray=false) {
-        preview=previewMode;Title="OuO • Overclock Utility Optimizer";Width=1140;Height=800;MinWidth=920;MinHeight=650;WindowStyle=WindowStyle.None;
+        preview=previewMode;Title="OuO • Overclock's Utility Optimizer";Width=1140;Height=800;MinWidth=920;MinHeight=650;WindowStyle=WindowStyle.None;
         System.Windows.Shell.WindowChrome.SetWindowChrome(this,new System.Windows.Shell.WindowChrome{CaptionHeight=0,ResizeBorderThickness=new Thickness(7),GlassFrameThickness=new Thickness(0),CornerRadius=new CornerRadius(0),UseAeroCaptionButtons=false});
         try{string iconPath=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"assets","branding","ouo-circuito.ico");if(File.Exists(iconPath)){BitmapImage appIcon=new BitmapImage(new Uri(iconPath));appIcon.Freeze();Icon=appIcon;}}catch{}
         Width=Math.Min(1320,SystemParameters.WorkArea.Width);Height=Math.Min(900,SystemParameters.WorkArea.Height);MinWidth=Math.Min(760,SystemParameters.WorkArea.Width);MinHeight=Math.Min(560,SystemParameters.WorkArea.Height);WindowStartupLocation=WindowStartupLocation.CenterScreen;FontFamily=new FontFamily("Segoe UI");FontSize=14;
         try {using(var k=Registry.CurrentUser.OpenSubKey("Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize")) if(k!=null)dark=Convert.ToInt32(k.GetValue("AppsUseLightTheme",0))==0;}catch{}
         try {using(var k=Registry.CurrentUser.OpenSubKey("Software\\OuO\\Appearance")) if(k!=null)accentName=Convert.ToString(k.GetValue("Accent","menta"));}catch{}
-        InitializeWindowBounds();LoadPreferences();BuildShell();if(startInTray&&!preview)InitTray();Loaded+=OnLoaded;Closed+=(s,e)=>{StopAutoMemory();if(timer!=null)timer.Stop();if(cpuCounter!=null)cpuCounter.Dispose();sensors.Dispose();DisposeTray();};
+        InitializeWindowBounds();LoadPreferences();BuildShell();if(startInTray&&!preview)InitTray();Loaded+=OnLoaded;Closed+=(s,e)=>{StopAutoMemory();if(timer!=null)timer.Stop();sensors.Dispose();DisposeTray();};
         Closing+=HandleExit;
     }
     string T(string p,string e){return L.T(p,e);}
     Brush Color(string hex){return new SolidColorBrush((Color)ColorConverter.ConvertFromString(hex));}
     void BuildShell(bool preservePages=false){
-        UiLifetimeProbe.Record(shell,"shell");if(UiLifetimeProbe.Enabled)foreach(object value in Application.Current.Resources.Values)if(value is Style)UiLifetimeProbe.Record(value,"style");
+        if(pageToolbarHost!=null)pageToolbarHost.Content=null;UiLifetimeProbe.Record(shell,"shell");if(UiLifetimeProbe.Enabled)foreach(object value in Application.Current.Resources.Values)if(value is Style)UiLifetimeProbe.Record(value,"style");
         if(preservePages){PageView saved;if(pageScroll!=null){if(pageCache.TryGetValue(current,out saved))saved.Offset=pageScroll.VerticalOffset;pageScroll.Content=null;}}
-        else{foreach(var view in pageCache)UiLifetimeProbe.Record(view.Value.Body,"page:"+view.Key);pageCache.Clear();pageRefreshActions.Clear();}
+        else{pageToolbars.Clear();foreach(var view in pageCache)UiLifetimeProbe.Record(view.Value.Body,"page:"+view.Key);pageCache.Clear();pageRefreshActions.Clear();}
         Bg=Color(dark?"#10141D":"#F2F5FA");Surface=Color(dark?"#1B2230":"#FFFFFF");Ink=Color(dark?"#EDF3FF":"#17243A");Muted=Color(dark?"#A5B2C7":"#53637B");Accent=Color(AccentHex());
         ApplyScrollTheme();ApplyComboTheme();ApplyButtonTheme();ApplyControlTheme();ApplyTabTheme();ApplyQualificationTheme();Background=Bg;Foreground=Ink;FontSize=compact?13:14; shell=new Grid();shell.ColumnDefinitions.Add(new ColumnDefinition{Width=new GridLength(compact?210:238)});shell.ColumnDefinitions.Add(new ColumnDefinition());shell.RowDefinitions.Add(new RowDefinition{Height=new GridLength(42)});shell.RowDefinitions.Add(new RowDefinition());shell.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto});Content=shell;
         Grid titleBar=new Grid{Background=Surface};titleBar.ColumnDefinitions.Add(new ColumnDefinition());titleBar.ColumnDefinitions.Add(new ColumnDefinition{Width=GridLength.Auto});
-        var titleDrag=new Border{Background=Surface,Padding=new Thickness(16,7,0,0),Child=Text("OuO  •  Overclock Utility Optimizer",13,Ink)};
+        var titleDrag=new Border{Background=Surface,Padding=new Thickness(16,7,0,0),Child=Text("OuO  •  Overclock's Utility Optimizer",13,Ink)};
         titleDrag.MouseLeftButtonDown+=(sender,e)=>{if(e.ClickCount==2)WindowState=WindowState==WindowState.Maximized?WindowState.Normal:WindowState.Maximized;else try{DragMove();}catch{}};
         titleBar.Children.Add(titleDrag);
         var controls=new StackPanel{Orientation=Orientation.Horizontal};
@@ -238,20 +238,20 @@ public partial class MainWindow:Window {
         var close=Button("✕",()=>Close());
         foreach(var control in new[]{minimize,maximize,close}){control.Width=44;control.Height=36;control.Padding=new Thickness(0);control.Margin=new Thickness(0);control.BorderThickness=new Thickness(0);control.Background=Surface;}
         maximize.ToolTip=T("Maximizar ou restaurar","Maximize or restore");close.ToolTip=T("Fechar","Close");minimize.ToolTip=T("Minimizar","Minimize");
-        controls.Children.Add(minimize);controls.Children.Add(maximize);controls.Children.Add(close);Grid.SetColumn(controls,1);titleBar.Children.Add(controls);
+        System.Windows.Automation.AutomationProperties.SetName(minimize,T("Minimizar","Minimize"));System.Windows.Automation.AutomationProperties.SetName(maximize,T("Maximizar ou restaurar","Maximize or restore"));System.Windows.Automation.AutomationProperties.SetName(close,T("Fechar","Close"));controls.Children.Add(minimize);controls.Children.Add(maximize);controls.Children.Add(close);Grid.SetColumn(controls,1);titleBar.Children.Add(controls);
         Grid.SetRow(titleBar,0);Grid.SetColumnSpan(titleBar,2);shell.Children.Add(titleBar);
         Grid sidebar=new Grid{Background=Surface};sidebar.RowDefinitions.Add(new RowDefinition{Height=GridLength.Auto});sidebar.RowDefinitions.Add(new RowDefinition());Grid.SetColumn(sidebar,0);Grid.SetRow(sidebar,1);shell.Children.Add(sidebar);
-        StackPanel brand=new StackPanel{Margin=new Thickness(20,24,14,18)};StackPanel brandRow=new StackPanel{Orientation=Orientation.Horizontal};try{string markPath=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"assets","branding","ouo-circuito.png");if(File.Exists(markPath)){BitmapImage mark=new BitmapImage(new Uri(markPath));mark.Freeze();brandRow.Children.Add(new Image{Source=mark,Width=38,Height=38,Margin=new Thickness(0,0,10,0)});}}catch{}brandRow.Children.Add(Text("OuO",28,Accent));brand.Children.Add(brandRow);brand.Children.Add(Text("Overclock Utility Optimizer",11,Muted));sidebar.Children.Add(brand);
+        StackPanel brand=new StackPanel{Margin=new Thickness(20,24,14,18)};StackPanel brandRow=new StackPanel{Orientation=Orientation.Horizontal};try{string markPath=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"assets","branding","ouo-circuito.png");if(File.Exists(markPath)){BitmapImage mark=new BitmapImage(new Uri(markPath));mark.Freeze();brandRow.Children.Add(new Image{Source=mark,Width=38,Height=38,Margin=new Thickness(0,0,10,0)});}}catch{}brandRow.Children.Add(Text("OuO",28,Accent));brand.Children.Add(brandRow);brand.Children.Add(Text("Overclock's Utility Optimizer",11,Muted));sidebar.Children.Add(brand);
         nav=new StackPanel{Margin=new Thickness(12,0,8,15)};ScrollViewer tabScroll=new ScrollViewer{Content=nav,VerticalScrollBarVisibility=ScrollBarVisibility.Auto,HorizontalScrollBarVisibility=ScrollBarVisibility.Disabled};Grid.SetRow(tabScroll,1);sidebar.Children.Add(tabScroll);
         InitializeNavigation();Nav("dashboard",T("Visão geral","Overview"));Nav("recommendations",T("Recomendações","Recommendations"));Nav("performance",T("Memória e desempenho","Memory & performance"));Nav("processes",T("Análise de processos","Process analysis"));Nav("stability",T("Estabilidade e eventos","Stability & events"));Nav("tweaks","Tweaks");Nav("repair",T("Reparo do sistema","System repair"));Nav("protection",T("Proteção e recursos","Protection & features"));Nav("browser",T("Navegação segura","Safe browsing"));Nav("network",T("Impressão","Printing"));Nav("storage",T("Armazenamento","Storage"));Nav("cloud-storage",T("Armazenamento em nuvem","Cloud storage"));Nav("cleanup",T("Limpeza","Cleanup"));Nav("startup",T("Inicialização","Startup"));Nav("apps",T("Instalar programas","Install apps"));Nav("office",T("Instalar Office","Install Office"));Nav("bloat",T("Remover Programas","Remove Programs"));Nav("recovery",T("Componentes e bibliotecas","Components & libraries"));Nav("drivers",T("Drivers","Drivers"));Nav("upgrade",T("Atualizar Windows","Upgrade Windows"));Nav("settings",T("Idioma e aparência","Language & appearance"));Nav("history",T("Histórico e restauração","History & restore"));Nav("about",T("Sobre","About"));
-        ScrollViewer scroll=new ScrollViewer{VerticalScrollBarVisibility=ScrollBarVisibility.Auto,HorizontalScrollBarVisibility=ScrollBarVisibility.Disabled};pageScroll=scroll;body=new StackPanel{Margin=compact?new Thickness(15):new Thickness(25,25,30,25)};scroll.Content=body;Grid.SetColumn(scroll,1);Grid.SetRow(scroll,1);shell.Children.Add(scroll);
-        StackPanel footer=new StackPanel();status=Text(machine==null?T("Detectando o computador…","Detecting your computer…"):machine.Caption+" • "+machine.Arch+" • "+(machine.Admin?T("Administrador","Administrator"):T("Usuário padrão","Standard user")),12,Muted);status.Margin=new Thickness(20,8,20,5);footer.Children.Add(status);workNotice=Text("",12,Accent);workNotice.Margin=new Thickness(20,0,20,4);workNotice.Visibility=Visibility.Collapsed;footer.Children.Add(workNotice);workProgress=new ProgressBar{Height=4,Margin=new Thickness(0),Foreground=Accent,Background=Surface,IsIndeterminate=busy,Visibility=busy?Visibility.Visible:Visibility.Collapsed};footer.Children.Add(workProgress);Grid.SetRow(footer,2);Grid.SetColumnSpan(footer,2);shell.Children.Add(footer);
+        ScrollViewer scroll=new ScrollViewer{VerticalScrollBarVisibility=ScrollBarVisibility.Auto,HorizontalScrollBarVisibility=ScrollBarVisibility.Disabled};pageScroll=scroll;body=new StackPanel{Margin=compact?new Thickness(15):new Thickness(25,25,30,25)};scroll.Content=body;var pageArea=new DockPanel{LastChildFill=true};pageToolbarHost=new ContentControl{Visibility=Visibility.Collapsed,Margin=new Thickness(16,8,16,0)};DockPanel.SetDock(pageToolbarHost,Dock.Top);pageArea.Children.Add(pageToolbarHost);pageArea.Children.Add(scroll);Grid.SetColumn(pageArea,1);Grid.SetRow(pageArea,1);shell.Children.Add(pageArea);
+        StackPanel footer=new StackPanel();status=Text(machine==null?T("Detectando o computador…","Detecting your computer…"):machine.Caption+" • "+machine.Arch+" • "+(machine.Admin?T("Administrador","Administrator"):T("Usuário padrão","Standard user")),12,Muted);status.Margin=new Thickness(20,8,20,5);footer.Children.Add(status);workNotice=Text("",12,Accent);workNotice.Margin=new Thickness(20,0,20,4);workNotice.Visibility=Visibility.Collapsed;footer.Children.Add(workNotice);workProgress=new ProgressBar{Height=4,Margin=new Thickness(0),Foreground=Accent,Background=Surface,IsIndeterminate=busy,Visibility=busy?Visibility.Visible:Visibility.Collapsed};AddActivityControls(footer);footer.Children.Add(workProgress);Grid.SetRow(footer,2);Grid.SetColumnSpan(footer,2);shell.Children.Add(footer);
         toastHost=new Border{Background=Surface,BorderBrush=Accent,BorderThickness=new Thickness(1),CornerRadius=new CornerRadius(9),MaxWidth=480,HorizontalAlignment=HorizontalAlignment.Right,VerticalAlignment=VerticalAlignment.Top,Margin=new Thickness(15),Visibility=Visibility.Collapsed};Grid.SetColumn(toastHost,1);Grid.SetRow(toastHost,1);Panel.SetZIndex(toastHost,100);shell.Children.Add(toastHost);
         rebuildingAppearance=preservePages;try{ShowPage(current);}finally{rebuildingAppearance=false;}UpdateWorkUi();
     }
     void Nav(string id,string label){BuildNavigationEntry(id,label);}
     TextBlock Text(string text,double size,Brush color){TextBlock block=Object.ReferenceEquals(color,StateGreen)?new ResultTextBlock{ResolveTone=OutcomeBrush}:new TextBlock();block.Text=text;block.FontSize=compact&&size>=13?size-1:size;block.Foreground=Object.ReferenceEquals(color,StateGreen)?OutcomeBrush(text):color;block.TextWrapping=TextWrapping.Wrap;block.Margin=new Thickness(0,0,0,compact?6:10);return block;}
-    Button Button(string label,Action click){Button b=new Button{Content=label,Background=Surface,Foreground=Ink,BorderBrush=Color(dark?"#344057":"#D8E0ED"),BorderThickness=new Thickness(1),Padding=compact?new Thickness(10,6,10,6):new Thickness(14,10,14,10),Margin=new Thickness(0,0,compact?5:8,compact?5:8),Cursor=System.Windows.Input.Cursors.Hand};b.Click+=(s,e)=>click();return b;}
+    Button Button(string label,Action click){Button b=new Button{Content=label,Background=Surface,Foreground=Ink,BorderBrush=Color(dark?"#344057":"#D8E0ED"),BorderThickness=new Thickness(1),Padding=compact?new Thickness(10,6,10,6):new Thickness(14,10,14,10),Margin=new Thickness(0,0,compact?5:8,compact?5:8),Cursor=System.Windows.Input.Cursors.Hand};b.Click+=(s,e)=>click();System.Windows.Automation.AutomationProperties.SetName(b,label);return b;}
     void Heading(string title,string subtitle){body.Children.Add(Text(title,30,Ink));body.Children.Add(Text(subtitle,14,Muted));if(current=="dashboard")BeginColumns(2);else if(new[]{"performance","recovery","browser","settings","storage"}.Contains(current))BeginColumns();}
     StackPanel Card(string title,string detail){StackPanel p=new StackPanel();p.Children.Add(Text(title,18,Ink));AddTestPhaseNotice(p,title);if(detail!="")p.Children.Add(Text(detail,13,Muted));Border border=new Border{Tag="OuO.Card",Background=Surface,CornerRadius=new CornerRadius(12),Padding=compact?new Thickness(12):new Thickness(18),Margin=compact?new Thickness(0,5,0,3):new Thickness(0,9,0,6),Child=p};border.SetBinding(UIElement.VisibilityProperty,new System.Windows.Data.Binding("Visibility"){Source=p});Panel host=(Panel)cardHost??body;host.Children.Add(border);RegisterTweakExtra(border);if(cardHost!=null)ResizeCards(cardHost);return p;}
     void Row(Panel parent,params Button[] buttons){WrapPanel wrap=new WrapPanel();foreach(Button b in buttons)wrap.Children.Add(b);parent.Children.Add(wrap);}
@@ -267,21 +267,14 @@ public partial class MainWindow:Window {
     void UpdateWorkUi(){
         busy=activeJobs.Count>0;
         if(workNotice!=null){workNotice.Visibility=busy?Visibility.Visible:Visibility.Collapsed;
-            if(busy)workNotice.Text=String.Join("  |  ",activeJobs.Values.Select(x=>UiLanguage.Current(x.Item1)+" • "+(DateTime.Now-x.Item2).ToString(@"mm\:ss")).ToArray());}
-        if(workProgress!=null){workProgress.Visibility=busy?Visibility.Visible:Visibility.Collapsed;workProgress.IsIndeterminate=busy;}
-        if(busy){if(activityTimer==null){activityTimer=new DispatcherTimer{Interval=TimeSpan.FromSeconds(1)};activityTimer.Tick+=(s,e)=>UpdateWorkUi();}activityTimer.Start();}
+            if(busy)workNotice.Text=String.Join("  |  ",activeJobs.Select(x=>{WorkProgress p;return jobProgress.TryGetValue(x.Key,out p)&&p.Total>0?p.Label:UiLanguage.Current(x.Value.Item1)+" • "+(DateTime.Now-x.Value.Item2).ToString(@"mm\:ss");}).ToArray());}
+        if(workProgress!=null){workProgress.Visibility=busy?Visibility.Visible:Visibility.Collapsed;WorkProgress measured=null;if(activeJobs.Count>0)jobProgress.TryGetValue(activeJobs.Keys.OrderBy(x=>x).First(),out measured);if(measured!=null&&measured.Total<=0)measured=null;workProgress.IsIndeterminate=busy&&measured==null;workProgress.Value=measured==null?0:measured.Percent;workProgress.ToolTip=measured==null?(activeJobs.Count==0?"":activeJobs.Values.First().Item1):measured.Label;}
+        if(activityButton!=null)activityButton.Content=T("Atividades e resultados","Activity and results")+(busy?" ("+activeJobs.Count+")":"");if(busy){if(activityTimer==null){activityTimer=new DispatcherTimer{Interval=TimeSpan.FromSeconds(1)};activityTimer.Tick+=(s,e)=>UpdateWorkUi();}activityTimer.Start();}
         else if(activityTimer!=null)activityTimer.Stop();
     }
-    void Work(string title,Func<string> action,Action<string> finished){
-        string key=UiLanguage.English(title);if(activeJobKeys.Values.Any(x=>x==key)){status.Text=T("Esta tarefa já está em andamento: ","This task is already running: ")+title;return;}
-        int id=++nextJobId;activeJobKeys[id]=key;activeJobs[id]=Tuple.Create(title,DateTime.Now);status.Text=title+"…";status.Foreground=Accent;UpdateWorkUi();
-        Task.Factory.StartNew(()=>{workerJobId=id;try{return OperationLanes.Execute(title,()=>{ReportStage(title);return action();},()=>ReportStage(T("Na fila: ","Queued: ")+title));}catch(OperationCanceledException){return T("Cancelado pelo usuário.","Canceled by user.");}catch(Exception e){return "ERROR: "+e.Message;}finally{workerJobId=0;}}).ContinueWith(task=>Dispatcher.BeginInvoke(new Action(()=>{
-            activeJobs.Remove(id);activeJobKeys.Remove(id);UpdateWorkUi();string result=task.Result;try{journal.Log(title,result);}catch{}status.Text=(ResultTone.IsFailure(result)?T("Não foi possível concluir: ","Could not complete: "):T("Operação concluída: ","Operation finished: "))+UiLanguage.Current(title);status.Foreground=CompletionBrush(result);
-            if(finished!=null)try{finished(result);}catch(Exception error){try{journal.Log(title,"ERROR • UI callback • "+error);}catch{}status.Text=T("Não foi possível atualizar o resultado: ","Could not update the result: ")+UiLanguage.Current(title);status.Foreground=OutcomeBrush("ERROR");ShowNotice("ERROR • "+error.Message);}
-        })));
-    }
+    void Work(string title,Func<string> action,Action<string> finished){StartTrackedWork(title,action,finished);}
     void ReportStage(string title,int jobId=0){
-        int id=jobId==0?workerJobId:jobId;Dispatcher.BeginInvoke(new Action(()=>{if(id!=0&&activeJobs.ContainsKey(id)){activeJobs[id]=Tuple.Create(title,activeJobs[id].Item2);UpdateWorkUi();}}));
+        int id=jobId==0?workerJobId:jobId;Dispatcher.BeginInvoke(new Action(()=>{if(id!=0&&activeJobs.ContainsKey(id)){activeJobs[id]=Tuple.Create(title,activeJobs[id].Item2);WorkProgress p;if(jobProgress.TryGetValue(id,out p))p.Stage=title;UpdateWorkUi();}}));
     }    string Describe(CommandResult r){return (r.Code==0?"OK":r.Code==3010||r.Code==1641?T("OK • Reinicialização necessária (","OK • Restart required (")+r.Code+")":"ERROR "+r.Code)+Environment.NewLine+r.Output;}
     void Command(string title,string file,string args,bool admin,int timeout){
         if(admin&&!RequireAdmin())return;if(!Confirm(title+"\n\n"+file+" "+args))return;TextBox target=console;
@@ -297,10 +290,10 @@ public partial class MainWindow:Window {
         if(!preview){if(LifecycleDialog(false).ShowDialog()!=true){exitFinalized=true;Dispatcher.BeginInvoke(new Action(Close),DispatcherPriority.Background);return;}startupAccepted=true;InitAutoMemory();if(TrayActive)Dispatcher.BeginInvoke(new Action(HideToTray),DispatcherPriority.Background);}
         Work(T("Detectar sistema","Detect system"),()=>{machine=Machine.Detect();return machine.Caption+" "+machine.Version;},r=>{
             pageCache.Clear();pageRefreshActions.Clear();ShowPage(current);status.Text=r+" • "+(machine.Admin?T("Administrador","Administrator"):T("Usuário padrão","Standard user"));
-            try{cpuCounter=new PerformanceCounter("Processor","% Processor Time","_Total");cpuCounter.NextValue();}catch{}
+            // CPU load uses native counters; avoid loading performance-counter libraries during startup.
             Native.GetSystemTimes(out previousIdle,out previousKernel,out previousUser);
-            if(!preview)sensors.Start();
-            timer=new DispatcherTimer{Interval=TimeSpan.FromSeconds(3)};timer.Tick+=(s,e)=>Sample();timer.Start();Sample();
+            if(!preview)sensors.Start();InitializeNextExperience();
+            timer=new DispatcherTimer{Interval=TimeSpan.FromSeconds(3)};timer.Tick+=(s,e)=>{timer.Interval=TimeSpan.FromSeconds(current=="dashboard"||current=="performance"?3:TrayActive?8:15);Sample();};timer.Start();Sample();
             if(Program.PendingOffice!=null&&!preview){OfficeAutoJob pending=Program.PendingOffice;Program.PendingOffice=null;Dispatcher.BeginInvoke(new Action(()=>StartOfficeAuto(pending,true)));}
             if(preview){DispatcherTimer shot=new DispatcherTimer{Interval=TimeSpan.FromSeconds(4)};shot.Tick+=(s,e)=>{shot.Stop();if(Environment.GetCommandLineArgs().Contains("--soak-ui")){VerifyNavigationSoak();return;}try{
                 if(Environment.GetCommandLineArgs().Contains("--verify-ui")) {
@@ -309,13 +302,13 @@ public partial class MainWindow:Window {
                     ShowPage("storage");pageScroll.ScrollToVerticalOffset(400);Capture("diagnostics/storage-explorer-pt.png");pageScroll.ScrollToTop();ShowPage("storage");pageScroll.ScrollToBottom();Capture("diagnostics/direct-clone-pt.png");pageScroll.ScrollToTop();ShowPage("cleanup");pageScroll.ScrollToBottom();Capture("diagnostics/registry-expanded-pt.png");pageScroll.ScrollToTop();ShowPage("drivers");pageScroll.ScrollToBottom();Capture("diagnostics/driver-catalogs-pt.png");pageScroll.ScrollToTop();
                     ShowPage("browser");var browserTabs=body.Children.OfType<WrapPanel>().First();foreach(var button in browserTabs.Children.OfType<Button>()){button.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));int shown=body.Children.OfType<CardColumns>().Count(x=>x.Visibility==Visibility.Visible);if(shown!=1)throw new InvalidOperationException("Safe browsing must show exactly one internal section.");Capture("diagnostics/browser-tab-"+browserTabs.Children.IndexOf(button)+".png");}
                     ShowPage("apps");AddQueue("Mozilla.Firefox");AddQueue("Google.Chrome");AddQueue("7zip.7zip");Capture("diagnostics/apps-queue-pt.png");
-                    ShowPage("performance");foreach(var pane in AppearanceTree(body).OfType<Expander>().ToArray()){var reportBox=pane.Content as TextBox;if(reportBox!=null)reportBox.Text="OK • relatório de teste";pane.IsExpanded=true;}Capture("diagnostics/performance-expanded-pt.png");Border[] performanceCards=cardHost.Children.OfType<Border>().ToArray();if(performanceCards.Length>=3&&VisualTreeHelper.GetOffset(performanceCards[2]).Y>VisualTreeHelper.GetOffset(performanceCards[0]).Y+performanceCards[0].ActualHeight+40)throw new InvalidOperationException("Expanded card left a full-row gap in Memory & performance.");
+                    ShowPage("performance");foreach(var pane in AppearanceTree(body).OfType<Expander>().ToArray()){var reportBox=AppearanceTree(pane).OfType<TextBox>().FirstOrDefault();if(reportBox!=null)reportBox.Text="OK • relatório de teste";pane.IsExpanded=true;}Capture("diagnostics/performance-expanded-pt.png");Border[] performanceCards=cardHost.Children.OfType<Border>().ToArray();if(performanceCards.Length>=3&&VisualTreeHelper.GetOffset(performanceCards[2]).Y>VisualTreeHelper.GetOffset(performanceCards[0]).Y+performanceCards[0].ActualHeight+40)throw new InvalidOperationException("Expanded card left a full-row gap in Memory & performance.");
                     ShowPage("drivers");var retainedBody=body;Panel retainedHost=cardHost==null?(Panel)body:cardHost;var retainedText=retainedHost.Children.OfType<Border>().SelectMany(b=>((StackPanel)b.Child).Children.OfType<TextBlock>()).First();retainedText.Text="retained-state-check";ShowPage("dns");ShowPage("drivers");if(!Object.ReferenceEquals(retainedBody,body)||retainedText.Text!="retained-state-check")throw new InvalidOperationException("Page state was reset on navigation.");
                     Width=820;Height=610;ShowPage("dns");Capture("diagnostics/dns-compact.png");Width=1320;Height=900;
                     Width=1720;ShowPage("tweaks");Capture("diagnostics/tweaks-wide.png");Width=1320;
                     VerifyRevision5UI();
                     VerifyStableUI();
-                    VerifyRevision7UI();VerifyQualificationUI();VerifyCloudStorageUI();VerifyOneDriveCloudUI();
+                    VerifyRevision7UI();VerifyQualificationUI();VerifyNextReleaseUI();VerifyCloudStorageUI();VerifyOneDriveCloudUI();
                     dark=false;current="dashboard";BuildShell();Capture("diagnostics/dashboard-light.png");L.Pt=false;BuildShell();Capture("diagnostics/dashboard-en.png");
                     foreach(string page in new[]{"repair","repair-advanced","processes","protection","dns","office","cloud-storage"}){ShowPage(page);Capture("diagnostics/"+page+"-en.png");}
                     File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"ui-results.txt"),"PASS: 26 views, cloud storage ranking, direct clone, expanded registry, driver catalogs and 4 safe-browsing sections rendered; retained page state and compact window checked; expanded-card layout checked; disk explorer fixture rendered; RC5 selectors, temporary selection, synchronized folder tree and cached Back navigation checked; RC6 grouped navigation, category filtering, offline recovery and state retained through theme, accent, density, language and a running background callback; RC7 component queries across navigation, explicit OneDrive choice, automatic-memory controls, tab contrast, semantic colors, startup consent and fifteen-second farewell; light/dark themes; Portuguese/English. No system changes executed.");
@@ -328,11 +321,11 @@ public partial class MainWindow:Window {
         Task.Factory.StartNew(()=>{
             string cpu="—",gpu="—",temp=T("Não disponível","Not available");ulong free=0;
             long idle,kernel,user;if(Native.GetSystemTimes(out idle,out kernel,out user)){long delta=(kernel-previousKernel)+(user-previousUser);if(delta>0)cpu=(Math.Max(0,Math.Min(100,100.0*(delta-(idle-previousIdle))/delta))).ToString("0")+"%";previousIdle=idle;previousKernel=kernel;previousUser=user;}
-            try{if(cpuCounter!=null)cpu=cpuCounter.NextValue().ToString("0")+"%";}catch{}
+            
             if(cpu=="—"){string load=Machine.First("SELECT LoadPercentage FROM Win32_Processor","LoadPercentage");if(load!="")cpu=load+"%";}
             Native.Memory memory=Native.ReadMemory();if(memory!=null)free=memory.Free/1024;
-            try{double max=0;bool found=false;foreach(var o in Machine.Query("root\\cimv2","SELECT UtilizationPercentage FROM Win32_PerfFormattedData_GPUPerformanceCounters_GPUEngine"))using(o){double v;if(Double.TryParse(Machine.Value(o,"UtilizationPercentage"),out v)){max=Math.Max(max,v);found=true;}}if(found)gpu=max.ToString("0")+"%*";}catch{}
-            SensorSnapshot snapshot=sensors.Snapshot;if(!preview&&snapshot.Status!="ready"){SensorSnapshot external=SensorSnapshot.ReadWmi();if(external!=null)snapshot=external;}if(snapshot.GpuLoad!="")gpu=snapshot.GpuLoad;
+            try{double max=0;bool found=false;if(current=="dashboard"||TrayActive)foreach(var o in Machine.Query("root\\cimv2","SELECT UtilizationPercentage FROM Win32_PerfFormattedData_GPUPerformanceCounters_GPUEngine"))using(o){double v;if(Double.TryParse(Machine.Value(o,"UtilizationPercentage"),out v)){max=Math.Max(max,v);found=true;}}if(found)gpu=max.ToString("0")+"%*";}catch{}
+            SensorSnapshot snapshot=sensors.Snapshot;if(!preview&&snapshot.Status!="ready"&&(DateTime.UtcNow-lastExternalSensorRead).TotalSeconds>=60){lastExternalSensorRead=DateTime.UtcNow;SensorSnapshot external=SensorSnapshot.ReadWmi();if(external!=null)snapshot=external;}if(snapshot.GpuLoad!="")gpu=snapshot.GpuLoad;
             if(snapshot.CpuName!="")machine.Cpu=snapshot.CpuName;if(snapshot.GpuName!="")machine.Gpu=snapshot.GpuName;if(snapshot.BoardName!="")machine.Board=snapshot.BoardName;
             if(snapshot.Status=="ready")temp=snapshot.Source+(snapshot.Cpu=="—"&&machine!=null&&!machine.Admin?T(" • abra como administrador para consultar os sensores de temperatura."," • run as administrator to query temperature sensors."):T(" • leitura ativa. Sensores não expostos pelo equipamento aparecem como indisponíveis."," • readings active. Sensors not exposed by the device are shown as unavailable."));else if(preview)temp=T("Motor de sensores não iniciado neste modo de verificação.","Sensor engine is not started in this verification mode.");else if(snapshot.Status=="framework-required")temp=T("Sensores integrados exigem .NET Framework 4.7.2 ou posterior.","Integrated sensors require .NET Framework 4.7.2 or later.");else temp=T("Motor integrado: ","Integrated engine: ")+snapshot.Status;
             return new string[]{cpu,gpu,free.ToString(CultureInfo.InvariantCulture),snapshot.Cpu,snapshot.Gpu,snapshot.Vrm,temp};
@@ -341,7 +334,7 @@ public partial class MainWindow:Window {
         }})));
     }
     void ShowPage(string id){ShowPage(id,false);}
-    void ShowPage(string id,bool refresh){if(pageScroll!=null&&pageCache.ContainsKey(current))pageCache[current].Offset=pageScroll.VerticalOffset;current=id;SelectNavigation(id);
+    void ShowPage(string id,bool refresh){if(pageScroll!=null&&pageCache.ContainsKey(current))pageCache[current].Offset=pageScroll.VerticalOffset;current=id;SelectNavigation(id);DisplayPageToolbar(id);
         PageView cached;if(!refresh&&id!="history"&&pageCache.TryGetValue(id,out cached)){body=cached.Body;console=cached.Console;cardHost=cached.Columns;pageScroll.Content=body;pageScroll.ScrollToVerticalOffset(cached.Offset);if(id=="dashboard")RenderMetrics();Action reload;if(!preview&&!rebuildingAppearance&&pageRefreshActions.TryGetValue(id,out reload))Dispatcher.BeginInvoke(reload);return;}
         if(id=="history"&&pageCache.ContainsKey(id))UiLifetimeProbe.Record(pageCache[id].Body,"replaced-history");cardHost=null;console=null;body=new StackPanel{Margin=compact?new Thickness(15):new Thickness(25,25,30,25),MaxWidth=1450,HorizontalAlignment=HorizontalAlignment.Stretch};pageScroll.Content=body;
         switch(id){case "dashboard":Dashboard();break;case "recommendations":RecommendationsPage();break;case "processes":ProcessesPage();break;case "stability":StabilityPage();break;case "repair":Repair(false);break;case "repair-advanced":Repair(true);break;case "protection":Protection();break;case "dns":DnsPage();break;case "network":PrintingPage();break;case "office":Office();break;case "performance":Performance();break;case "tweaks":Tweaks();break;case "storage":Storage();break;case "cloud-storage":CloudStoragePage();break;case "cleanup":CleanupPage();break;case "startup":Startup();break;case "apps":Apps();break;case "apps-updates":AppUpdates();break;case "bloat":Bloat();break;case "browser":Browser();break;case "privacy":Privacy();break;case "recovery":Recovery();break;case "drivers":DriversPage();break;case "upgrade":Upgrade();break;case "settings":Settings();break;case "history":History();break;case "about":AboutPage();break;}
@@ -465,7 +458,7 @@ public partial class MainWindow:Window {
         Row(q,Button(T("Remover selecionados","Remove selected"),()=>{foreach(string id in AppIcons.Selected(queueList))queue.Remove(id);RefreshQueue();}),Button(T("Instalar fila","Install queue"),()=>{
             if(!available){ShowNotice(T("WinGet indisponível neste sistema.","WinGet unavailable on this system."));return;}string[] ids=queue.ToArray();if(ids.Length==0||!Confirm(T("Instalar os seguintes programas?\n","Install these apps?\n")+String.Join("\n",ids)))return;
             string consent=packageAgreement.IsChecked==true?" --accept-package-agreements --accept-source-agreements":"";
-            TextBox target=console;var completed=new List<string>();var names=ids.ToDictionary(id=>id,id=>AppIcons.Package(id).Name);Work("WinGet install",()=>{StringBuilder output=new StringBuilder();foreach(string id in ids){if(!Runner.ValidId(id))throw new ArgumentException("Invalid package ID");ReportStage(T("Instalando ","Installing ")+names[id]);output.AppendLine(names[id]);var installed=Runner.Run("winget.exe","install --id "+id+" --exact --source winget --silent --disable-interactivity"+consent,1800000);output.AppendLine(Describe(installed));if(installed.Code==0||installed.Code==3010||installed.Code==1641)completed.Add(id);}return output.ToString();},r=>{target.Text=r;foreach(string id in completed)queue.Remove(id);RefreshQueue();});
+            TextBox target=console;var completed=new List<string>();var names=ids.ToDictionary(id=>id,id=>AppIcons.Package(id).Name);Work("WinGet install",()=>{StringBuilder output=new StringBuilder();int completedCount=0;foreach(string id in ids){WorkReporting.Report(completedCount++,ids.Length,T("Instalando ","Installing ")+names[id]);if(!Runner.ValidId(id))throw new ArgumentException("Invalid package ID");ReportStage(T("Instalando ","Installing ")+names[id]);output.AppendLine(names[id]);var installed=Runner.Run("winget.exe","install --id "+id+" --exact --source winget --silent --disable-interactivity"+consent,1800000);output.AppendLine(Describe(installed));if(installed.Code==0||installed.Code==3010||installed.Code==1641)completed.Add(id);}WorkReporting.Report(ids.Length,ids.Length,T("Fila processada","Queue processed"));return output.ToString();},r=>{target.Text=r;foreach(string id in completed)queue.Remove(id);RefreshQueue();});
         }));Output(q);
         Row(q,Button(T("Salvar lista","Save list"),()=>{if(queue.Count==0)return;var dialog=new Microsoft.Win32.SaveFileDialog{Filter="Lista OuO (*.xml)|*.xml",FileName="Meus-programas.xml"};if(dialog.ShowDialog(this)!=true)return;try{PackageProfiles.Save(dialog.FileName,queue);}catch(Exception error){ShowNotice(error.Message);}}),Button(T("Importar lista","Import list"),()=>{string file=PickFile("Lista OuO (*.xml)|*.xml");if(file==null)return;try{foreach(string id in PackageProfiles.Load(file))AddQueue(id);}catch(Exception error){ShowNotice(error.Message);}}));        Row(q,Button(T("Sites oficiais","Official websites"),()=>Open("https://learn.microsoft.com/windows/package-manager/winget/")));
         cardHost=null;
@@ -628,7 +621,7 @@ public partial class MainWindow:Window {
     void History(){
         Heading(T("Histórico e restauração","History & restore"),T("O histórico contém detalhes do computador e das operações. Compartilhe apenas quando necessário.","History contains computer and operation details. Share only when needed."));
         var export=Card(T("Diagnóstico exportável","Export diagnostics"),T("Gera um resumo local sem nome de usuário, número de série nem caminhos de arquivos. Revise o texto antes de compartilhar.","Creates a local summary without username, serial numbers or file paths. Review it before sharing."));
-        Row(export,Button(T("Gerar relatório","Generate report"),()=>ExportDiagnostic()));
+        Row(export,Button(T("Gerar relatório","Generate report"),()=>ExportDiagnostic()));OperationHistoryCard();ChangeHistoryCard();
         var p=Card(T("Alterações de Registro","Registry changes"),T("Restaura um valor por vez, do mais recente ao mais antigo. Operações de programas, TRIM, BCD e movimentações de inicialização possuem procedimentos próprios.","Restores one value at a time, newest first. App operations, TRIM, BCD and startup moves have separate procedures."));
         Row(p,Button(T("Restaurar último valor","Restore latest value"),()=>{if(!Confirm(T("Restaurar o valor de Registro mais recente? Alterações de máquina exigem administrador.","Restore the latest registry value? Machine changes require administrator.")))return;Work("Registry undo",()=>journal.Undo(),r=>{ShowNotice(r);ShowPage("history");});}),Button(T("Abrir pasta do histórico","Open history folder"),()=>Open(journal.Folder)),Button(T("Atualizar histórico","Refresh history"),()=>ShowPage("history",true)));
         Output(p);console.Height=300;console.Text=journal.History();
@@ -666,7 +659,7 @@ public static class Tests {
         Revision7Checks.Run(check,folder);
         ReleaseChecks.Run(check,folder);
         StabilizationChecks.Run(check,folder);
-        CloudStorageChecks.Run(check,folder);
+        CloudStorageChecks.Run(check,folder);NextReleaseChecks.Run(check,folder);
         File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"test-results.txt"),"PASS: "+count+" checks\n"+DateTime.Now.ToString("s"));return 0;
     }catch(Exception e){File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"test-results.txt"),"FAIL after "+count+": "+e);return 1;}}
 }

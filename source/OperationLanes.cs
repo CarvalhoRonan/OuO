@@ -5,7 +5,7 @@ namespace Aurora {
 public static class OperationLanes {
     static readonly object installers=new object(),network=new object(),servicing=installers,storage=new object(),printing=new object();
     public static string Lane(string title){
-        string t=(title??"").ToLowerInvariant();
+        string t=(title??"").ToLowerInvariant();if(t.Contains("driver cleanup")||t.Contains("limpeza de drivers")||t.Contains("sensor driver")||t.Contains("driver de sensores"))return "installers";
         if(t.Contains("clonar disco")||t.Contains("clone disk")||t.Contains("criar imagem do sistema")||t.Contains("create system image")||t.Contains("preparar disco de clonagem")||t.Contains("prepare cloning disk"))return "storage";
         if(t.Contains("scan")||t.Contains("search")||t.Contains("check")||t.Contains("inspect")||t.Contains("query")||t.Contains("inventory")||t.Contains("test")||t.Contains("checar")||t.Contains("consultar")||t.Contains("testar")||t.Contains("mapear")||t.Contains("mapear")||t.Contains("procurar")||t.Contains("inventariar"))return "";
         if(t.Contains("printer preferences")||t.Contains("printer queue")||t.Contains("print queue")||t.Contains("spooler"))return "printing";

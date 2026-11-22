@@ -28,15 +28,15 @@ public partial class MainWindow {
         var titleBlock=Text(title,16,Ink);titleBlock.TextAlignment=TextAlignment.Center;tile.Children.Add(titleBlock);AboutQr(tile,qr,size);parent.Children.Add(tile);return tile;
     }
     void AboutPage(){
-        Heading(T("Sobre o OuO","About OuO"),T("Overclock Utility Optimizer • desenvolvido por Overclock Informática.","Overclock Utility Optimizer • developed by Overclock Informática."));
+        Heading(T("Sobre o OuO","About OuO"),T("Overclock's Utility Optimizer • desenvolvido por Overclock Informática.","Overclock's Utility Optimizer • developed by Overclock Informática."));
         var app=Card(T("Versão e finalidade","Version and purpose"),"");
         string version=System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
-        app.Children.Add(Text("OuO "+version+" • "+T("prévia • análise de armazenamento em nuvem","preview • cloud storage analysis"),17,Accent));
+        app.Children.Add(Text("OuO "+version+" • "+T("prévia • experiência de uso e manutenção","preview • usability and maintenance"),17,Accent));
         Note(app,"Distribuição sem assinatura digital. O Controle Inteligente de Aplicativos pode impedir a execução por falta de confiança no arquivo. Consulte o relatório de validação desta compilação.","Unsigned distribution. Smart App Control may prevent execution when the file is not trusted. See the validation report for this build.");
         Note(app,"Esta versão reúne o núcleo validado e recursos em fase de testes, identificados junto aos controles. A validação foi feita em Windows 11 x64 e no Windows Sandbox; Windows 7, 8/8.1, 10, x86 e outros conjuntos de hardware/DPI ainda precisam de homologação. O nome não significa que o aplicativo ofereça controles de overclock.","This release combines the validated core with features in testing, marked beside their controls. Validation used Windows 11 x64 and Windows Sandbox; Windows 7, 8/8.1, 10, x86 and other hardware/DPI combinations still need qualification. The name does not imply overclock controls.");
         app.Children.Add(Button(T("Ver recursos em fase de testes","View features in testing"),()=>ShowNotice(String.Join("\n\n",System.Linq.Enumerable.Select(ReleaseQualification.Features,x=>x.Name+"\n"+x.Reason)),T("Validação do OuO","OuO validation"))));
 
-        BeginColumns(2);
+        OuOUpdateCard();var ownLicense=Card(T("Licença do OuO","OuO license"),T("Uso gratuito com código visível. Reutilizar o código próprio ou distribuir versões derivadas exige autorização, respeitadas as licenças dos componentes e os direitos legais.","Free use with visible source. Reusing original code or distributing derived versions requires authorization, respecting component licenses and statutory rights."));Row(ownLicense,Button(T("Ler licença completa","Read full license"),()=>Open(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"LICENSE.md"))));BeginColumns(2);
         var support=Card(T("Apoie o desenvolvimento ♡","Support development ♡"),T("Doações são opcionais. Todas as funcionalidades permanecem gratuitas.","Donations are optional. All features remain free."));
         var donationTiles=new WrapPanel{HorizontalAlignment=HorizontalAlignment.Center};support.Children.Add(donationTiles);
         var pix=AboutTile(donationTiles,T("Pix • Brasil","Pix • Brazil"),"pix.png",180);

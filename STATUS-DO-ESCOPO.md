@@ -1,3 +1,12 @@
+# Atualização de 22/11/2026 — OuO 1.1.0, prévia 1
+
+Nome completo: **Overclock's Utility Optimizer**. Os 12 pedidos e seis melhorias adicionais foram implementados nesta rodada, com detalhes em NOVIDADES-1.1.0.md e critérios em CRITERIOS-DE-LIBERACAO.json. A publicação do login Google ficou fora desta etapa; o OuO e o atualizador consultado no GitHub não exigem conta.
+
+407 verificações automatizadas, 26 telas, 38 verificações de aceitação e navegação de dez minutos passaram. Download real, integridade, backup e extração do atualizador foram conferidos. Não houve remoção de drivers, reinício, instalação de Office ou reparo do Windows neste computador. **25 grupos mantêm Recurso em fase de testes**; ver HOMOLOGACAO-1.1.0.md.
+
+A tabela a seguir preserva o histórico anterior de implementação e suas pendências. Resultados de versões anteriores não substituem validação administrativa da compilação atual.
+
+---
 # Situação dos pedidos — OuO 1.0.0
 
 Atualizado em 17/11/2026 para a prévia 1.0.0.107. A revisão acrescenta filtros e paginação de mídias do OneDrive, comparação de espaço e histórico de versões. Corrige também o erro Hwnd de zero ao recusar o aviso inicial. O analisador de nuvem mantém um grupo adicional aos 21 anteriores em fase de testes. O Google usa o cadastro próprio do OuO em modo de testes. A distribuição continua sem assinatura por decisão do usuário. A qualificação e as pendências estão em HOMOLOGACAO-1.0.0.md.

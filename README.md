@@ -1,72 +1,41 @@
-# OuO — Overclock Utility Optimizer
+# OuO — Overclock's Utility Optimizer
 
-Utilitário portátil para manutenção, diagnóstico e organização do Windows, desenvolvido pela **Overclock Informática**.
+Utilitário portátil de manutenção e diagnóstico do Windows, desenvolvido pela **Overclock Informática**.
 
-**Versão atual: 1.0.0.107 — prévia nuvem r5.** Esta entrega contém recursos em fase de testes, identificados dentro do aplicativo. A homologação completa ainda está em andamento.
+**Versão atual: 1.1.0 — prévia 1 (arquivo 1.1.0.0).** Recursos ainda sem qualificação completa exibem **Recurso em fase de testes**. A distribuição permanece sem assinatura de código.
 
 ## Download
 
-[**Baixar OuO 1.0.0.107 — pacote completo**](https://github.com/CarvalhoRonan/OuO/releases/download/v1.0.0.107-preview/OuO-1.0.0-previa-nuvem-r5.zip)
+[**Baixar OuO 1.1.0 — pacote completo**](https://github.com/CarvalhoRonan/OuO/releases/download/v1.1.0-preview1/OuO-1.1.0-previa1.zip)
 
-1. Extraia o ZIP em uma pasta do computador.
-2. Abra `OuO.exe` dentro da pasta extraída.
-3. Leia o aviso inicial e as descrições dos recursos antes de aplicar alterações.
+Extraia todo o ZIP e abra **OuO.exe**. Não é preciso criar conta ou fazer login para abrir o programa ou consultar suas atualizações no GitHub. Conexões de nuvem são opcionais e separadas.
 
-O pacote inclui o programa, suas dependências, o código-fonte e os avisos dos componentes de terceiros. Algumas operações de manutenção precisam de permissão de administrador. Os ensaios desta entrega foram realizados em Windows 11 x64; outros sistemas e conjuntos de hardware têm validação pendente.
+## Novidades
 
-## Recursos
+Os 12 pedidos e as seis melhorias adicionais aprovadas estão em [NOVIDADES-1.1.0.md](NOVIDADES-1.1.0.md): nome novo, licença, preparação dos sensores, limpeza de vídeo/áudio com backup, menus reorganizados, progresso por tarefa, barra fixa dos tweaks, layout, relógio, limpar logs, suporte dos fabricantes e mais navegadores. Também inclui reversão por operação, relatórios de falha, atualização pelo GitHub, reinicialização pendente, comparação antes/depois e acessibilidade.
 
-- Visão do computador, armazenamento, memória e monitoramento de hardware.
-- Processos, inicialização, estabilidade e eventos do Windows.
-- Tweaks organizados por categoria, com checagem e restauração.
-- Instalação e atualização de programas, Office e bibliotecas.
-- Rede, DNS, bloqueios e navegação segura.
-- Drivers, reparos, manutenção e recuperação do sistema.
-- Análise de espaço no Google Drive e OneDrive.
+A consulta de versões fica em **Configurações → Sobre → Atualização do OuO**, com canais estável e prévia. O pacote é conferido pelo tamanho e SHA-256, com backup da cópia atual e preparo em outra pasta. A ativação e a recuperação entre versões ainda estão em testes. A limpeza nativa de drivers não é o motor DDU; o guia oficial está disponível no módulo.
 
-Consulte [STATUS-DO-ESCOPO.md](STATUS-DO-ESCOPO.md) para conhecer as funcionalidades e as limitações de validação.
+## Validação
 
-## Novidades desta prévia
+- 407 verificações automatizadas e 26 telas aprovadas.
+- 38 verificações de aceitação aprovadas.
+- Dez minutos e 8.242 trocas de tela, com memória gerenciada e identificadores de recursos acompanhados.
+- Consulta pública do GitHub, download real, integridade, backup e extração verificados sem ativar a cópia baixada.
+- Pasta e ZIP desta entrega verificados pelo Defender; resultados se limitam à rodada registrada.
 
-- OneDrive: filtros de fotos/imagens e vídeos, maiores arquivos primeiro e navegação por páginas.
-- Comparação dos tamanhos listados com a cota e a lixeira da conta.
-- Consulta de metadados do histórico de versões do arquivo selecionado.
-- Progresso da análise e filtros que aproveitam os resultados já carregados.
-- Correção da classificação de arquivos TypeScript que poderiam aparecer como vídeos.
-- Correção do erro de janela ao clicar em **Sair** no aviso inicial.
-
-O analisador de nuvem consulta metadados em modo de leitura. O login acontece no navegador. O cadastro integrado do Google está em modo de testes, com acesso limitado às contas autorizadas nesse cadastro. A análise individual da biblioteca do Google Fotos ainda não foi implementada; veja [GOOGLE-FOTOS-OPCOES.md](GOOGLE-FOTOS-OPCOES.md).
-
-## Validação e integridade
-
-A compilação passou em **369 verificações automatizadas e 26 telas**, além de consultas reais de metadados do OneDrive e testes de encerramento no aviso inicial. Os cenários ainda sem homologação continuam identificados como **Recurso em fase de testes**.
-
-A distribuição permanece **sem assinatura de código**. O executável e o ZIP desta compilação passaram por uma análise específica do Microsoft Defender na rodada de validação de 18/11/2026. Consulte [HOMOLOGACAO-1.0.0.md](HOMOLOGACAO-1.0.0.md) para os resultados e seus limites.
+**25 grupos continuam em testes.** Consulte [HOMOLOGACAO-1.1.0.md](HOMOLOGACAO-1.1.0.md), [CRITERIOS-DE-LIBERACAO.json](CRITERIOS-DE-LIBERACAO.json) e [STATUS-DO-ESCOPO.md](STATUS-DO-ESCOPO.md). MSI, Office, reparos e operações administrativas em hardware real conservam suas pendências. Esta prévia não qualifica o produto inteiro como estável.
 
 SHA-256 do ZIP:
 
 ```text
-5BA5006504F68C8A3A4095E4317F130AB5E793F5CE7BC78F94E63AEEDCAA456D
+8ACCB35B77B0CD5CBBA5F757C61B436C09EC61C480B12435269915361752D146
 ```
 
-## Código-fonte
+## Código e licença
 
-O código está em [source](source). O repositório reúne as fontes de texto; os binários, as dependências e todos os arquivos originais dos componentes também estão disponíveis no pacote completo da release.
+O código está em [source](source). O repositório reúne as fontes de texto; o pacote da release inclui dependências, imagens e fontes originais dos componentes. `ARQUIVOS-SHA256.csv` descreve os arquivos distribuídos. O script `Compilar.ps1` usa o compilador .NET Framework do Windows; o parâmetro opcional `-GoogleOAuthFile` inclui somente o cadastro do aplicativo de computador, nunca autorizações de contas. O cadastro integrado do Google continua em modo de testes; sua publicação ficou fora desta rodada.
 
-Para preparar uma cópia de desenvolvimento, extraia o pacote completo e copie as fontes deste repositório sobre essa pasta. O script `Compilar.ps1` usa o compilador .NET Framework do Windows. O parâmetro opcional `-GoogleOAuthFile` permite incluir o cadastro de aplicativo de computador na compilação; o arquivo de cadastro e as autorizações pessoais não são versionados neste repositório.
+[Licença de Uso Gratuito e Código Visível](LICENSE.md): uso gratuito, inclusive profissional, e compartilhamento gratuito do pacote oficial íntegro. Reutilização do código próprio e versões derivadas exigem autorização, respeitados os direitos legais e da plataforma. Os componentes de terceiros mantêm suas licenças; veja [THIRD-PARTY.md](THIRD-PARTY.md), [licenses](licenses) e [third-party-source](third-party-source).
 
-`ARQUIVOS-SHA256.csv` descreve os arquivos do pacote completo da distribuição.
-
-## Licenciamento
-
-O **código próprio do OuO tem uso gratuito e código visível, com reutilização reservada**, conforme a [Licença de Uso Gratuito e Código Visível](LICENSE.md). É permitido usar o programa, inclusive na atividade profissional, e compartilhar o pacote oficial íntegro. Reaproveitar o código original em outros projetos ou criar distribuições modificadas exige autorização, ressalvados os direitos legais e as permissões da plataforma.
-
-Os componentes de terceiros mantêm suas respectivas licenças e atribuições. Os avisos estão em [THIRD-PARTY.md](THIRD-PARTY.md), [licenses](licenses) e [third-party-source](third-party-source), incluindo fontes e instruções dos auxiliares distribuídos.
-
-## Overclock Informática
-
-[Página de links e contato](https://linkme.bio/overclockinformatica) · [Instagram](https://www.instagram.com/oc.informatica/)
-
-## Próxima versão
-
-Os pedidos de 22/11/2026 e seus critérios de conclusão estão em [PROXIMA-VERSAO.md](PROXIMA-VERSAO.md). A licença já foi definida; os demais itens dessa rodada estão planejados para a próxima implementação.
+[Escopo desta versão](PROXIMA-VERSAO.md) · [Overclock Informática — contato e links](https://linkme.bio/overclockinformatica) · [Instagram](https://www.instagram.com/oc.informatica/).

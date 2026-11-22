@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -62,7 +62,7 @@ public partial class MainWindow {
         release.Set();var watch=System.Diagnostics.Stopwatch.StartNew();while(!callback&&watch.ElapsedMilliseconds<7000){var frame=new DispatcherFrame();Dispatcher.BeginInvoke(DispatcherPriority.Background,new Action(()=>frame.Continue=false));Dispatcher.PushFrame(frame);Thread.Sleep(10);}release.Dispose();if(!callback||callbackTarget.Text!="OK • retained async result"||!body.Children.Contains(callbackTarget))throw new InvalidOperationException("A retained background callback failed after the appearance change.");
         if(!status.Text.Contains("Appearance verification"))throw new InvalidOperationException("An operation completed in the previous UI language.");Capture("diagnostics/tweaks-filtered-light-en.png");SetLanguage(true);SetAppTheme(true);SetCompact(false);SetAccent("menta");tweakSearch.Text="";tweakCategoryFilter.SelectedIndex=0;body.Children.Remove(callbackTarget);
         ShowPage("repair-advanced");Capture("diagnostics/recovery-offline-pt.png");
-        ShowPage("repair");foreach(var pane in AppearanceTree(body).OfType<Expander>().ToArray()){var reportBox=pane.Content as TextBox;if(reportBox!=null)reportBox.Text="OK • diagnóstico de exemplo";pane.IsExpanded=true;}Capture("diagnostics/repair-expanded-pt.png");var repairCards=cardHost.Children.OfType<System.Windows.Controls.Border>().ToArray();if(repairCards.Length>=3&&System.Windows.Media.VisualTreeHelper.GetOffset(repairCards[2]).Y>System.Windows.Media.VisualTreeHelper.GetOffset(repairCards[0]).Y+repairCards[0].ActualHeight+40)throw new InvalidOperationException("Expanded repair cards left a full-row gap.");
+        ShowPage("repair");foreach(var pane in AppearanceTree(body).OfType<Expander>().ToArray()){var reportBox=AppearanceTree(pane).OfType<TextBox>().FirstOrDefault();if(reportBox!=null)reportBox.Text="OK • diagnóstico de exemplo";pane.IsExpanded=true;}Capture("diagnostics/repair-expanded-pt.png");var repairCards=cardHost.Children.OfType<System.Windows.Controls.Border>().ToArray();if(repairCards.Length>=3&&System.Windows.Media.VisualTreeHelper.GetOffset(repairCards[2]).Y>System.Windows.Media.VisualTreeHelper.GetOffset(repairCards[0]).Y+repairCards[0].ActualHeight+40)throw new InvalidOperationException("Expanded repair cards left a full-row gap.");
     }
 }
 }

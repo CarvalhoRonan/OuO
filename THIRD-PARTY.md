@@ -1,4 +1,4 @@
-﻿# Componentes de terceiros — OuO 1.0 RC6
+# Componentes de terceiros — OuO 1.1 • Overclock's Utility Optimizer
 
 As bibliotecas e instaladores abaixo são distribuídos como arquivos separados. O auxiliar de recuperação offline é uma compilação local modificada, identificada em sua seção. O código do cliente Aurora e do auxiliar está em `source/` e permite substituir/recompilar os componentes de acordo com suas licenças.
 
@@ -23,16 +23,16 @@ O analisador de armazenamento em nuvem baixa o executável portátil oficial na 
 ## PawnIO
 
 - Site do autor: https://pawnio.eu/
-- Driver: https://github.com/namazso/PawnIO/tree/2.1.0
-- Instalador: https://github.com/namazso/PawnIO.Setup/releases/tag/2.1.0
-- O instalador `Sensors/PawnIO_setup.exe` veio do recurso incluído na versão oficial 0.9.6 do Libre Hardware Monitor.
-- Versão do instalador: 2.1.0.0. Assinatura Authenticode verificada como válida na preparação do pacote; editor `namazso`.
-- SHA-256: `a3a46226c5e2824f4cdd42be0eecbabfc672c86f7889710f5ab1e6ad385b47a0`, correspondente ao digest oficial da release 2.1.0.
-- Licença e exceção do projeto: `licenses/PawnIO-LICENSE.txt` e README contido no código original em `third-party-source/PawnIO-2.1.0-source.zip`.
-- Repositório da distribuição do instalador incluído em `third-party-source/PawnIO.Setup-2.1.0-repository.zip`.
+- Driver: https://github.com/namazso/PawnIO/tree/2.2.0
+- Instalador: https://github.com/namazso/PawnIO.Setup/releases/tag/2.2.0
+- O instalador `Sensors/PawnIO_setup.exe` foi atualizado pela distribuição oficial do autor para 2.2.0; a biblioteca Libre Hardware Monitor permanece 0.9.6.
+- Versão do instalador: 2.2.0.0. Assinatura Authenticode verificada como válida na preparação do pacote; editor `namazso`.
+- SHA-256: `1f519a22e47187f70a1379a48ca604981c4fcf694f4e65b734aaa74a9fba3032`, correspondente ao digest oficial da release 2.2.0.
+- Licença e exceção do projeto: `licenses/PawnIO-LICENSE.txt` e README contido no código original em `third-party-source/PawnIO-2.2.0-source.zip`.
+- Repositório da distribuição do instalador incluído em `third-party-source/PawnIO.Setup-2.2.0-repository.zip`.
 - Os módulos PawnIO embutidos na biblioteca Libre são componentes do projeto upstream, com avisos LGPL no documento original. As fontes de módulos ficam em https://github.com/namazso/PawnIO.Modules e os arquivos de referência estão em `third-party-source/`.
 
-O Aurora não instala o driver automaticamente, não altera a integridade de memória do Windows nem configura exclusões de antivírus para liberar sensores.
+O OuO oferece a preparação do driver quando ausente e só abre o instalador após confirmação; não altera a integridade de memória do Windows nem configura exclusões de antivírus para liberar sensores.
 
 ## Ícones dos aplicativos
 

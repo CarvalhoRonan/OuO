@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
@@ -24,16 +24,7 @@ public partial class MainWindow {
     void SystemTheme(bool light){if(machine==null||machine.Build<14393)return;if(!Confirm(T("Aplicar tema ","Apply ")+(light?T("claro","light"):T("escuro","dark"))+T(" ao Windows? Os valores anteriores serão salvos no histórico."," theme to Windows? Previous values will be saved in history.")))return;
         Work("Windows theme",()=>{string path="Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize";journal.RegistryChange("Windows app theme","HKCU",path,"AppsUseLightTheme",light?1:0,Microsoft.Win32.RegistryValueKind.DWord);if(machine.Build>=18362)journal.RegistryChange("Windows system theme","HKCU",path,"SystemUsesLightTheme",light?1:0,Microsoft.Win32.RegistryValueKind.DWord);return T("Tema aplicado. Reabra os aplicativos para refletir a alteração.","Theme applied. Reopen apps to reflect the change.");},r=>ShowNotice(r));
     }
-    void InstallSensorDriver(){
-        if(preview)return;
-        if(!Confirm(T("Preparar o acesso aos sensores de CPU e placa-mãe?\n\nSerá aberto o instalador assinado do PawnIO incluído no pacote oficial do Libre Hardware Monitor. O Windows poderá solicitar administrador. Revise e confirme a instalação; depois reinicie os sensores. Alguns equipamentos não expõem temperaturas de VRM.","Set up CPU and motherboard sensor access?\n\nThe signed PawnIO installer included in the official Libre Hardware Monitor package will open. Windows may request administrator. Review and confirm installation, then restart sensors. Some devices do not expose VRM temperatures.")))return;
-        string file=Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"Sensors","PawnIO_setup.exe");
-        try{
-            string digest;using(SHA256 sha=SHA256.Create())using(var stream=File.OpenRead(file))digest=BitConverter.ToString(sha.ComputeHash(stream)).Replace("-","");
-            if(digest!="A3A46226C5E2824F4CDD42BE0EECBABFC672C86F7889710F5AB1E6AD385B47A0")throw new InvalidDataException(T("O instalador não corresponde ao pacote verificado.","Installer does not match the verified package."));
-            Process.Start(new ProcessStartInfo(file){UseShellExecute=true,Verb="runas",WorkingDirectory=Path.GetDirectoryName(file)});journal.Log("PawnIO installer","Opened signed installer; completion not monitored.");
-        }catch(Exception e){ShowNotice(e.Message);}
-    }
+    void InstallSensorDriver(){if(preview)return;if(!Confirm(T("Abrir o instalador oficial assinado do PawnIO 2.2.0 para preparar os sensores? O Windows pode solicitar administrador. A leitura depende dos sensores disponíveis no equipamento.","Open the signed official PawnIO 2.2.0 installer to set up sensors? Windows may request administrator permission. Readings depend on available hardware sensors.")))return;RunSensorInstaller();}
     const string MemoryQuery="if (!(Get-Command Get-MMAgent -ErrorAction SilentlyContinue)) { throw 'MMAgent unavailable' }; $m = Get-MMAgent; if (!$m.PSObject.Properties['MemoryCompression']) { throw 'MemoryCompression unavailable' }; Write-Output ('AURORA-MEMORY:' + [string]$m.MemoryCompression)";
     string MemoryFile{get{return Path.Combine(journal.Folder,"memory-compression.previous");}}
     internal static bool ParseMemory(string text){Match match=Regex.Match(text??"","AURORA-MEMORY:(True|False)",RegexOptions.IgnoreCase);if(!match.Success)throw new InvalidDataException(L.T("Não foi possível consultar a compactação de memória.","Could not query memory compression."));return Boolean.Parse(match.Groups[1].Value);}

@@ -1,12 +1,14 @@
 # Próxima versão do OuO — escopo de 22/11/2026
 
-Base publicada: 1.0.0.107, prévia nuvem r5. Este documento registra todos os pedidos desta rodada, a abordagem e os critérios de conclusão. Não representa uma compilação nova nem a implementação concluída dos itens de interface e drivers.
+Base publicada: 1.0.0.107, prévia nuvem r5. Este documento registra todos os pedidos desta rodada, a abordagem e os critérios de conclusão. A produção da candidata 1.1.0 foi autorizada em 22/11/2026, em uma cópia separada da distribuição publicada.
 
 ## Situação
 
-- Licença: definida para o repositório como uso gratuito com código visível e reutilização reservada; incluir o texto na próxima distribuição e na tela Sobre.
-- Itens 2 a 12 abaixo: registrados para implementação e validação da próxima versão.
+- Licença: uso gratuito com código visível e reutilização reservada, incluída na candidata e na tela Sobre.
+- Itens 2 a 12 e melhorias 13 a 18 abaixo: em implementação e validação; a situação final será registrada no relatório da candidata.
 - Permanecem vigentes as pendências já descritas em STATUS-DO-ESCOPO.md. Recursos sem ensaio suficiente continuam com a indicação de fase de testes.
+- Nome aprovado: **Overclock's Utility Optimizer**, mantendo a abreviação **OuO**.
+- Não adicionar cadastro ou login para abrir o OuO ou consultar atualizações. O item sugerido de publicação do login Google está fora desta rodada. A consulta de versões usa diretamente o repositório oficial no GitHub; as conexões de nuvem existentes continuam opcionais.
 
 ## 1. Licença gratuita com código visível e restritivo
 
@@ -75,7 +77,7 @@ Revisar o custo do monitoramento contínuo e ajustar a frequência quando o apli
 
 ## 8. Alinhamento e responsividade do aplicativo inteiro
 
-A implementação atual de CardColumns distribui cada cartão na coluna mais curta, em formato de mosaico. Isso contribui para inícios de linhas em alturas diferentes, como no recorte enviado. Nas telas de formulários, usar agrupamentos e linhas alinhadas, larguras responsivas e espaçamentos consistentes, com organização do conteúdo para reduzir áreas sem função.
+A implementação atual de CardColumns distribui cada cartão na coluna mais curta, em formato de mosaico. Isso contribui para inícios de linhas em alturas diferentes, como no recorte enviado. Nas telas de formulários, usar colunas estáveis por grupo: cada cartão permanece na mesma coluna e o próximo cartão acompanha o anterior ao expandir um relatório, sem saltar para outra coluna nem reservar uma linha inteira vazia. Usar linhas alinhadas para controles e resumos, larguras responsivas e espaçamentos consistentes.
 
 Padronizar margens, títulos, descrições, botões e campos. Relatórios recolhidos não devem reservar grandes retângulos vazios. Rever todas as telas, inclusive estados com resultados, filas e avisos expandidos.
 
@@ -112,6 +114,46 @@ Ampliar Chrome, Edge, Brave e Firefox para Vivaldi, Opera/Opera GX, Chromium e v
 Usar uBlock Origin ou uBlock Origin Lite conforme a compatibilidade do navegador e conferir IDs/lojas pelos projetos oficiais. Manter o WOT como uma escolha explícita e revisar suas permissões e disponibilidade em cada loja. Preservar políticas de organizações já existentes, oferecer desfazer as regras criadas pelo OuO e diferenciar regra aplicada de extensão efetivamente instalada. A detecção na abertura não autoriza instalar extensões silenciosamente sem a seleção do usuário.
 
 **Conclusão:** testar navegadores ausentes, instalações em caminhos alternativos, variantes, políticas conflitantes, permissões, rede indisponível e disponibilidade real de cada extensão. Novos conectores sem ensaio completo permanecem identificados como em testes.
+
+## 13. Histórico com reversão por operação
+
+Agrupar alterações do Registro feitas pela mesma operação, apresentar data/resultado e restaurar o conjunto selecionado. Rechecar o estado final e alterações posteriores antes da reversão. Preservar a restauração individual para registros antigos sem estado final verificado. A reversão não promete recuperar arquivos excluídos ou desfazer qualquer instalador externo.
+
+**Conclusão:** validar valores tipados, operações com mais de um valor, escrita repetida no mesmo valor, conflito externo e ordem de restauração entre operações. Manter os resultados persistentes ao reabrir o OuO.
+
+## 14. Relatar problema a partir de uma falha
+
+Acrescentar ação junto dos resultados com erro e na janela de atividades. Gerar texto com versão, operação e mensagem, removendo caminhos, e-mails e credenciais reconhecíveis. Permitir revisar, editar, copiar e salvar; não enviar automaticamente para terceiros.
+
+**Conclusão:** conferir remoção de dados reconhecíveis, resultado sem erro, cancelamento e relatório grande, com apresentação integrada ao tema.
+
+## 15. Atualizador do próprio OuO pelo GitHub
+
+Consultar as releases públicas de CarvalhoRonan/OuO sem conta ou autenticação. Oferecer canal estável ou estável/prévia, conferir metadados, tamanho e SHA-256 do pacote oficial, guardar a versão anterior e preparar a nova em pasta separada. Preservar configurações do perfil do Windows e informar como abrir a nova cópia depois de fechar a atual.
+
+**Conclusão:** validar canais, versões numéricas, release vazia/rascunho, falha de rede, hash/tamanho divergente, cancelamento, caminhos maliciosos no ZIP e recuperação entre duas distribuições completas. A troca completa fica em fase de testes até o ensaio correspondente.
+
+## 16. Reinicialização pendente
+
+Consolidar solicitações do Windows e resultados explícitos das operações do OuO, persistindo os motivos durante a mesma inicialização. Apresentar o que aguarda reinício, permitir adiar e oferecer reinicialização revisada pelo usuário quando não houver tarefas em andamento.
+
+**Conclusão:** conferir estados ausentes/presentes/inacessíveis, limpeza dos avisos de uma inicialização anterior, resultados cancelados e ação de cancelar uma reinicialização agendada pelo OuO. Nenhum reinício é disparado durante os testes no computador de trabalho.
+
+## 17. Comparação antes e depois
+
+Registrar duração, espaço disponível na unidade do Windows e RAM disponível no início/fim. Exibir resultados na janela de atividades e no histórico. Identificar que as variações podem incluir outros programas e não equivalem a ganho permanente de desempenho.
+
+**Conclusão:** persistência, ausência de dados, falha/cancelamento e operações simultâneas sem atribuir toda variação de recursos ao OuO.
+
+## 18. Acessibilidade e identificação de estados
+
+Acrescentar texto e símbolos aos estados, nomes acessíveis nos controles, foco de teclado visível e atalhos para buscar funções e alternar áreas. Preservar as cores semânticas e conferir mudanças de idioma/tema/escala.
+
+**Conclusão:** navegação por teclado, foco visível e estados distinguíveis sem depender somente de verde/vermelho. Leitor de tela e múltiplos monitores continuam exigindo ensaio próprio quando não disponíveis.
+
+## Critérios de liberação por recurso
+
+Cada relatório deve separar testes automatizados, ensaios reais e cenários pendentes. Verificar instalação limpa, atualização da versão anterior, cancelamento, falha de conexão e recuperação. MSI, Office e reparos do sistema mantêm prioridade nas próximas rodadas administrativas e conservam o aviso de testes enquanto seus fluxos reais não forem homologados. Um resultado em testes controlados não qualifica automaticamente hardware físico ou outra edição do Windows.
 
 ## Referências consultadas
 

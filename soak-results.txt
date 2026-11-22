@@ -1,0 +1,4 @@
+﻿PASS • 601,4 s; 8242 transitions through 26 views; 317 cycles; dark/light and Portuguese/English changes.
+Managed heap after collection: 16989968 -> 17524584 bytes; retained growth 534616 bytes.
+Process handles: 902 -> 902.
+Ten-minute navigation stress test through the normal event loop; not long-term qualification with personal applications.

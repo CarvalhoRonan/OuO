@@ -1,4 +1,4 @@
-param([string]$GoogleOAuthFile)
+﻿param([string]$GoogleOAuthFile)
 
 $ErrorActionPreference='Stop'
 $auroraRoot=$PSScriptRoot
@@ -6,7 +6,7 @@ $framework=Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319'
 if(-not (Test-Path -LiteralPath (Join-Path $framework 'csc.exe'))){
     $framework=Join-Path $env:WINDIR 'Microsoft.NET\Framework\v4.0.30319'
 }
-$references=@('System.dll','System.Core.dll','System.Security.dll','System.Management.dll','System.Xml.dll','System.Xml.Linq.dll','System.Web.Extensions.dll','System.Windows.Forms.dll','System.Drawing.dll','Microsoft.VisualBasic.dll','System.IO.Compression.dll','WPF\WindowsBase.dll','WPF\PresentationCore.dll','WPF\PresentationFramework.dll','System.Xaml.dll')
+$references=@('System.dll','System.Core.dll','System.Security.dll','System.Management.dll','System.Xml.dll','System.Xml.Linq.dll','System.Web.Extensions.dll','System.Windows.Forms.dll','System.Drawing.dll','Microsoft.VisualBasic.dll','System.IO.Compression.dll','System.IO.Compression.FileSystem.dll','WPF\WindowsBase.dll','WPF\PresentationCore.dll','WPF\PresentationFramework.dll','System.Xaml.dll')
 $arguments=@('/nologo','/target:winexe','/platform:anycpu','/optimize+','/codepage:65001',
     ('/out:'+(Join-Path $auroraRoot 'OuO.exe')),
     ('/win32manifest:'+(Join-Path $auroraRoot 'source\app.manifest')),

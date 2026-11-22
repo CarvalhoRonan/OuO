@@ -12,6 +12,7 @@ public partial class MainWindow {
             </Border>
             <ControlTemplate.Triggers>
               <Trigger Property='IsMouseOver' Value='True'><Setter TargetName='Frame' Property='BorderBrush' Value='{DynamicResource OuOComboAccent}'/></Trigger>
+              <Trigger Property='IsKeyboardFocused' Value='True'><Setter TargetName='Frame' Property='BorderBrush' Value='{DynamicResource OuOComboAccent}'/><Setter TargetName='Frame' Property='BorderThickness' Value='2'/></Trigger>
               <Trigger Property='IsPressed' Value='True'><Setter TargetName='Frame' Property='Opacity' Value='0.76'/></Trigger>
               <Trigger Property='IsEnabled' Value='False'><Setter TargetName='Frame' Property='Opacity' Value='0.45'/></Trigger>
             </ControlTemplate.Triggers>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -42,7 +42,7 @@ public partial class MainWindow {
     }
     void Repair(bool advanced){
         Heading(T("Reparo do sistema","System repair"),T("Diagnóstico e reparo com as ferramentas oficiais do Windows.","Diagnostics and repairs using official Windows tools."));
-        WrapPanel tabs=new WrapPanel();tabs.Children.Add(TabButton(T("Reparo padrão","Standard repair"),()=>ShowPage("repair"),!advanced));tabs.Children.Add(TabButton(T("Avançado","Advanced"),()=>ShowPage("repair-advanced"),advanced));body.Children.Add(tabs);BeginColumns();
+        WrapPanel tabs=new WrapPanel();tabs.Children.Add(TabButton(T("Reparo padrão","Standard repair"),()=>ShowPage("repair"),!advanced));tabs.Children.Add(TabButton(T("Avançado","Advanced"),()=>ShowPage("repair-advanced"),advanced));body.Children.Add(tabs);BeginColumns(2);cardHost.IndependentColumns=true;
         if(advanced){AdvancedRepair();return;}
         var sfc=Card("SFC",T("Verifica arquivos protegidos do Windows. Use DISM RestoreHealth antes do SFC quando o repositório de componentes estiver corrompido.","Checks protected Windows files. Use DISM RestoreHealth before SFC when the component store is corrupted."));
         CheckBox verify=Choice(sfc,T("Somente verificar arquivos","Verify files only"),true,true),fix=Choice(sfc,T("Verificar e reparar (scannow)","Verify and repair (scannow)"),true,false);

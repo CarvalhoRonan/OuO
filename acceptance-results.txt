@@ -1,0 +1,47 @@
+﻿PASS • mixed success/error report is red
+PASS • disabled state is red in both languages
+PASS • confirmed DNS is green
+PASS • unknown state is neutral
+PASS • PowerShell plain Unicode output without CLIXML
+PASS • DNS compares normalized IPv6 addresses
+PASS • wrong effective DNS cannot report confirmation
+PASS • site address becomes a domain
+PASS • browser block rules include subdomains
+PASS • Office removal is a separate configure operation
+PASS • Office removal cannot force-close apps
+PASS • Office removal consent survives elevation
+PASS • installation queue leaves independent queries available
+PASS • popular catalog has 24 or more distinct described apps
+PASS • temporary cleaner rejects system files
+PASS • registry cleaner requires a missing absolute uninstaller and location
+PASS • tweak catalog IDs unique and multi-setting mouse preference complete
+PASS • system image destination cannot be the source volume
+PASS • legacy upgrade rejects unverified media
+PASS • Office inventory groups supporting components under main suite
+PASS • custom block page escapes text and rejects untrusted CSS
+PASS • release catalog keeps the latest Windows 11 versions and older references
+PASS • release catalog understands current Microsoft release-history headings
+PASS • display mode layout matches DEVMODEW
+PASS • current display mode can be read without changing resolution
+PASS • offline driver scan matches only the chosen hardware identifier
+PASS • startup folder toggle moves only its shortcut to the disabled location
+PASS • startup shortcut can be restored without touching the installed program
+PASS • blocked-page extension deduplicates domains and has a local explanation
+PASS • daily task XML uses a valid schema and passes SYSTEM logon type separately
+PASS • Windows Task Scheduler accepts daily task XML without registering it: XML accepted
+
+PASS • native disk scan returns exact logical sizes and empty directories
+PASS • cached disk scan keeps correct totals
+INFO • disk fixture: 1920 files; first scan 40 ms; repeat 1 ms.
+PASS • disk scan can be canceled
+PASS • Store logo locates scale variants and rejects traversal
+PASS • current DNS read from active interface: DNS atual • Wi-Fi
+Cloudflare • Malware e adultos
+2606:4700:4700::1113, 2606:4700:4700::1003, 1.1.1.3, 1.0.0.3
+PASS • both maintenance schedules inspected
+INFO • Backup do Registro: Desativado • sem agenda criada.
+INFO • Ponto de restauração: Desativado • sem agenda criada.
+PASS • Store app inventory has names and versions
+INFO • Store apps: 74; icons: 71
+UNVERIFIED • F8 check requires an elevated disposable test system.
+INFO • no DNS, hosts, Office, driver, task, boot or system feature was modified.

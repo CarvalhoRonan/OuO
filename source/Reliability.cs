@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
@@ -62,7 +62,7 @@ public partial class MainWindow {
         content.Children.Add(Text(title??T("Informação","Information"),20,Accent));
         content.Children.Add(new ScrollViewer{MaxHeight=Math.Max(120,SystemParameters.WorkArea.Height-220),Content=Text(message,14,OutcomeBrush(message)),VerticalScrollBarVisibility=ScrollBarVisibility.Auto});
         Row(content,Button(T("Copiar detalhes","Copy details"),()=>{try{Clipboard.SetText(message);}catch{}}),Button(T("Fechar","Close"),()=>dialog.Close()));
-        dialog.Content=new Border{BorderBrush=Accent,BorderThickness=new Thickness(1),Child=content};dialog.ShowDialog();
+        if(ResultTone.IsFailure(message))Row(content,Button(T("Relatar problema","Report a problem"),()=>ReportProblem(title??"OuO",message)));dialog.Content=new Border{BorderBrush=Accent,BorderThickness=new Thickness(1),Child=content};dialog.ShowDialog();
     }
     string lastNoticeText;
     void CheckBoot(TextBox target){

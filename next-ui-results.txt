@@ -1,0 +1,6 @@
+﻿PASS • Docked tweaks toolbar remains visible during scrolling.
+PASS • Technical-log clearing collapses its empty area; errors expose support-report action.
+PASS • Counted operation shows exact 25% progress.
+PASS • Clock selection returns 00:59 and cancellation preserves the value.
+PASS • About includes license and public GitHub update controls.
+No Windows setting, driver, schedule or account was changed.

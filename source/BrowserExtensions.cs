@@ -8,7 +8,7 @@ using Microsoft.Win32;
 
 namespace Aurora {
 public sealed class BrowserInfo {
-    public string Id,Name,Exe,PolicyPath;
+    public string Id,Name,Exe,PolicyPath,InstallPath,Family,Scope;
     public bool Installed;
 }
 public static class BrowserExtensions {
@@ -20,25 +20,11 @@ public static class BrowserExtensions {
     public const string ChromeWot="bhmmomiinigofkjcapegjjndpbikblnp";
     public const string EdgeUblock="cimighlppcgcoapaliogpjjdehbnofhn";
     public const string EdgeWot="iiclaphjclecagpkkaacljnpcppnoibi";
-    public static BrowserInfo[] Detect(){
-        var all=new[]{new BrowserInfo{Id="chrome",Name="Google Chrome",Exe="chrome.exe",PolicyPath=@"Software\Policies\Google\Chrome"},new BrowserInfo{Id="edge",Name="Microsoft Edge",Exe="msedge.exe",PolicyPath=@"Software\Policies\Microsoft\Edge"},new BrowserInfo{Id="brave",Name="Brave",Exe="brave.exe",PolicyPath=@"Software\Policies\BraveSoftware\Brave"},new BrowserInfo{Id="firefox",Name="Mozilla Firefox",Exe="firefox.exe",PolicyPath=@"Software\Policies\Mozilla\Firefox"}};
-        foreach(var item in all)item.Installed=Find(item.Exe);
-        return all;
-    }
-    static bool Find(string exe){
-        foreach(RegistryView view in new[]{RegistryView.Registry64,RegistryView.Registry32}){
-            foreach(RegistryHive hive in new[]{RegistryHive.LocalMachine,RegistryHive.CurrentUser}){
-                try{using(var root=RegistryKey.OpenBaseKey(hive,view))using(var key=root.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\App Paths\"+exe))if(key!=null){string path=Convert.ToString(key.GetValue("", ""));if(File.Exists(path))return true;}}catch{}
-            }
-        }
-        string[] bases={Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles),Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86),Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)};
-        string[] paths=exe=="chrome.exe"?new[]{@"Google\Chrome\Application\chrome.exe"}:exe=="msedge.exe"?new[]{@"Microsoft\Edge\Application\msedge.exe"}:exe=="brave.exe"?new[]{@"BraveSoftware\Brave-Browser\Application\brave.exe"}:new[]{@"Mozilla Firefox\firefox.exe",@"Programs\Mozilla Firefox\firefox.exe"};
-        return bases.Where(x=>!String.IsNullOrEmpty(x)).Any(root=>paths.Any(path=>File.Exists(Path.Combine(root,path))));
-    }
+    public static BrowserInfo[] Detect(){return BrowserInventory.Detect();}
     static JavaScriptSerializer Json(){return new JavaScriptSerializer{MaxJsonLength=1024*1024};}
     public static string MergeChromium(string existing,string browser,bool ublock,bool wot,bool protect=false){
         if(!ublock&&!wot)throw new ArgumentException("No extensions selected");
-        if(browser!="chrome"&&browser!="edge"&&browser!="brave")throw new ArgumentException("Unsupported browser");
+        if(browser!="chrome"&&browser!="edge"&&browser!="brave"&&browser!="chromium")throw new ArgumentException("Unsupported browser");
         Dictionary<string,object> document;
         if(String.IsNullOrWhiteSpace(existing))document=new Dictionary<string,object>();
         else {try{document=Json().Deserialize<Dictionary<string,object>>(existing);}catch(Exception e){throw new InvalidDataException("Existing browser policy is not valid JSON",e);}if(document==null)throw new InvalidDataException("Invalid browser policy");}
@@ -66,9 +52,9 @@ public static class BrowserExtensions {
         if(browsers==null||!browsers.Any(x=>x.Installed))throw new InvalidOperationException(L.T("Nenhum navegador compatível foi encontrado.","No supported browser was found."));
         StringBuilder result=new StringBuilder();
         foreach(var browser in browsers.Where(x=>x.Installed)){
-            string title="BrowserExtensions:"+browser.Id;
+            string family=String.IsNullOrEmpty(browser.Family)?browser.Id:browser.Family;string title="BrowserExtensions:"+browser.Id;if(String.IsNullOrEmpty(browser.PolicyPath)){result.AppendLine(browser.Name+": "+L.T("instalação assistida pela loja oficial; automação ainda não validada.","guided official-store installation; automation not yet validated."));continue;}
             try{
-                if(browser.Id=="firefox"){
+                if(family=="firefox"){
                     string path=browser.PolicyPath+@"\Extensions\Install";
                     foreach(string url in new[]{ublock?FirefoxUblock:null,wot?FirefoxWot:null}.Where(x=>x!=null)){
                         string slot=FirefoxValue(registry,path,url);if(slot!=null)journal.RegistryChange(title,"HKCU",path,slot,url,RegistryValueKind.String);
@@ -77,7 +63,7 @@ public static class BrowserExtensions {
                     string path=browser.PolicyPath;RegistrySnapshot existing=registry.Read("HKCU",path,"ExtensionSettings");
                     if(existing.Exists&&existing.Kind!=RegistryValueKind.String)throw new InvalidOperationException("Existing ExtensionSettings type must be reviewed manually");
                     string old=existing.Exists?Convert.ToString(existing.Value):null;
-                    string next=MergeChromium(old,browser.Id,ublock,wot,protect);
+                    string next=MergeChromium(old,family,ublock,wot,protect);
                     if(next!=old)journal.RegistryChange(title,"HKCU",path,"ExtensionSettings",next,RegistryValueKind.String);
                 }
                 result.AppendLine(browser.Name+": "+L.T("política preparada; reinicie o navegador e confira as extensões.","policy prepared; restart the browser and check extensions."));

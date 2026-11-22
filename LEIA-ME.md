@@ -1,33 +1,17 @@
-# OuO 1.0.0.107 — mídias do OneDrive e correção de saída
+# OuO — Overclock's Utility Optimizer
 
-Extraia o pacote, feche a versão anterior e abra **OuO.exe**. A conexão salva nas versões anteriores continua disponível neste perfil do Windows.
+Versão 1.1.0.0 • Prévia 1 • 22/11/2026.
 
-## Fotos e vídeos no OneDrive
+Extraia todo o pacote em uma pasta e abra **OuO.exe**. Leia o aviso inicial e as descrições das funções. Não é preciso criar conta ou fazer login para abrir o programa ou consultar suas atualizações no GitHub.
 
-1. Abra **Diagnóstico → Armazenamento em nuvem** e escolha **OneDrive**.
-2. Se necessário, use **Conectar OneDrive** e faça o login no navegador. Depois da conexão, a análise começa.
-3. Use **Analisar espaço** para atualizar o inventário. Em contas grandes, a leitura completa pode levar vários minutos. A operação e a contagem de itens consultados aparecem durante a leitura.
-4. Em **Tipo de arquivo da lista**, escolha **Fotos e imagens** ou **Vídeos**. Os maiores arquivos aparecem primeiro. A busca filtra pelo nome e caminho; as pastas também mostram o tamanho da categoria escolhida.
-5. Use **Próxima página** e **Página anterior** para percorrer a lista. Cada página mostra até 100 arquivos. Mudar o filtro ou navegar nos resultados reaproveita os dados em memória.
+Os 12 pedidos e as seis melhorias adicionais estão em [NOVIDADES-1.1.0.md](NOVIDADES-1.1.0.md). A consulta de atualização fica em **Configurações → Sobre → Atualização do OuO**. Os canais permitem incluir ou excluir prévias de testes. O preparo guarda a versão anterior e abre a pasta nova; feche a cópia atual antes de usar a nova.
 
-O tipo usa a informação fornecida pelo serviço; quando ela não está disponível, usa a extensão do arquivo. Extensões ambíguas, como .ts e .mts, só entram como vídeo quando o serviço informa esse tipo; arquivos de declaração de programação ficam em Outros. Fotos e imagens podem incluir imagens de programas, além de fotografias pessoais.
+Algumas ações precisam ser abertas como administrador pelo botão da Visão geral. O driver de sensores só é oferecido quando não há instalação detectada e sua instalação exige sua confirmação. Leitura de temperatura e saúde depende dos sensores fornecidos pelo equipamento.
 
-## Entender a diferença de espaço
+Esta entrega é uma **prévia**, com 25 grupos ainda identificados como **Recurso em fase de testes**. Consulte [HOMOLOGACAO-1.1.0.md](HOMOLOGACAO-1.1.0.md) para os ensaios realizados e os cenários pendentes. MSI, Office, reparos, clonagem, recuperação de conta e alterações reais de drivers não recebem qualificação universal a partir de testes em arquivos ou discos virtuais.
 
-**De onde vem o uso da conta** separa os tamanhos conhecidos de imagens, vídeos e demais arquivos. A lixeira usa o valor informado pela Microsoft. **Saldo não explicado** é a diferença que ainda não foi atribuída pelos dados consultados.
+A distribuição permanece sem assinatura digital. A verificação do Defender desta compilação é descrita no relatório e vinculada ao SHA-256; não garante que toda definição futura de antivírus ou política corporativa aceite o arquivo.
 
-A cota pessoal da Microsoft pode incluir outros serviços. Itens sem tamanho, pastas sem acesso, compartilhamentos e versões também podem afetar a comparação. A tela informa quando a listagem está parcial ou os totais divergem; nenhum saldo é atribuído automaticamente a uma causa.
+Uso gratuito com código visível: [LICENSE.md](LICENSE.md). Reutilização do código próprio e versões derivadas exigem autorização, respeitados os direitos legais e de terceiros. Fontes próprias em source/, avisos em THIRD-PARTY.md e fontes dos componentes em third-party-source/.
 
-**Atualizar cota e lixeira** consulta somente esses totais e preserva a lista de arquivos. É mais rápido que refazer o inventário completo.
-
-Para investigar um arquivo, selecione-o e clique em **Checar histórico do arquivo**. O OuO mostra os metadados das versões que a Microsoft retornar, da mais recente para a mais antiga. O tamanho de uma versão não mede, por si, o espaço adicional cobrado na conta. A consulta não baixa, restaura ou exclui versões.
-
-## Correção do aviso inicial
-
-O botão **Sair** encerra o programa depois que a criação da janela é concluída. A rotina de janela ignora identificadores já encerrados. A recusa no botão Sair, o fechamento do aviso e a recusa no modo de bandeja foram testados sem iniciar o monitoramento de hardware.
-
-## Google e estado da prévia
-
-A divisão do consumo Google entre serviços foi mantida. A lista de arquivos do Google Drive continua separada da biblioteca do Google Fotos. A análise individual do Fotos foi adiada pelo usuário; veja [as alternativas](GOOGLE-FOTOS-OPCOES.md). O saldo Google sem identificação não recebeu uma categoria por suposição.
-
-O analisador consulta os dados em modo de leitura. A compilação permanece sem assinatura, e os recursos com ensaios pendentes continuam identificados. Consulte [Validação](HOMOLOGACAO-1.0.0.md) e [Estado do escopo](STATUS-DO-ESCOPO.md).
+[Projeto oficial e downloads](https://github.com/CarvalhoRonan/OuO) · [Overclock Informática](https://linkme.bio/overclockinformatica).

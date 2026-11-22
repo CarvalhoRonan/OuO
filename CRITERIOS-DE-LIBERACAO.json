@@ -1,0 +1,267 @@
+﻿{
+    "Data":  "2026-11-22",
+    "Produto":  "Overclock\u0027s Utility Optimizer",
+    "Abreviacao":  "OuO",
+    "Versao":  "1.1.0.0",
+    "Canal":  "Prévia 1",
+    "SHA256Executavel":  "47604A8AC6C4FF5D1E6048866506CE466043B9787FA85F02CDECEBC3789FD337",
+    "EstavelCompleta":  false,
+    "ItensDestaRodada":  [
+                             {
+                                 "Id":  1,
+                                 "Pedido":  "Licença de uso gratuito com código visível e reutilização restrita",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  2,
+                                 "Pedido":  "Oferecer driver de sensores na primeira execução quando ausente",
+                                 "Estado":  "Implementado; cenários reais adicionais permanecem em testes"
+                             },
+                             {
+                                 "Id":  3,
+                                 "Pedido":  "Limpeza de drivers de vídeo e áudio",
+                                 "Estado":  "Implementado; cenários reais adicionais permanecem em testes"
+                             },
+                             {
+                                 "Id":  4,
+                                 "Pedido":  "Reorganização dos menus",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  5,
+                                 "Pedido":  "Progresso por operação com porcentagem real ou estimativa identificada",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  6,
+                                 "Pedido":  "Barra de ações dos tweaks fixa ao rolar",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  7,
+                                 "Pedido":  "Otimização do próprio OuO para computadores modestos",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  8,
+                                 "Pedido":  "Alinhamento e responsividade em todas as telas",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  9,
+                                 "Pedido":  "Relógio para selecionar horários e entrada HH:mm",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  10,
+                                 "Pedido":  "Limpar log exibido nos detalhes técnicos",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  11,
+                                 "Pedido":  "Link oficial do fabricante nos detalhes dos discos",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  12,
+                                 "Pedido":  "Mais navegadores, detecção inicial e instalação de uBlock/WOT compatível",
+                                 "Estado":  "Implementado; cenários reais adicionais permanecem em testes"
+                             },
+                             {
+                                 "Id":  13,
+                                 "Pedido":  "Histórico com reversão por operação",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  14,
+                                 "Pedido":  "Relatar problema junto dos erros",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  15,
+                                 "Pedido":  "Atualizador do próprio OuO pelo GitHub, sem login",
+                                 "Estado":  "Implementado; cenários reais adicionais permanecem em testes"
+                             },
+                             {
+                                 "Id":  16,
+                                 "Pedido":  "Indicador de reinicialização pendente",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  17,
+                                 "Pedido":  "Resumo antes/depois das operações",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             },
+                             {
+                                 "Id":  18,
+                                 "Pedido":  "Acessibilidade com símbolos, foco e navegação pelo teclado",
+                                 "Estado":  "Implementado e verificado nos cenários descritos no relatório"
+                             }
+                         ],
+    "ForaDestaRodada":  "Sugestão 7: publicação do login Google; abertura e atualizações do OuO não exigem conta",
+    "GruposEmTestes":  [
+                           {
+                               "Id":  "ouo-update",
+                               "Nome":  "Atualização do próprio OuO",
+                               "Pendencia":  "Consulta, canais e integridade possuem testes. Troca e recuperação entre duas distribuições completas ainda precisam de ensaio.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "driver-cleanup",
+                               "Nome":  "Limpeza de vídeo e áudio",
+                               "Pendencia":  "Inventário, escopo e proteções possuem testes; remoção, reinicialização e reinstalação em hardware físico ainda precisam de validação.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "sensor-install",
+                               "Nome":  "Instalação do driver de sensores",
+                               "Pendencia":  "Instalador oficial 2.2.0 conferido por hash e assinatura; primeira instalação e cancelamento de UAC variam por sistema e precisam de ensaio próprio.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "clone",
+                               "Nome":  "Clonagem e inicialização",
+                               "Pendencia":  "Cópia e GPT verificadas em discos virtuais; inicialização da cópia e dispositivos SATA/NVMe/USB ainda precisam de ensaio.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "account",
+                               "Nome":  "Recuperação de conta",
+                               "Pendencia":  "Cópias e formato do Registro foram verificados. A entrada na conta de um Windows recuperado ainda precisa de validação.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "boot",
+                               "Nome":  "F8 e recuperação",
+                               "Pendencia":  "A alternância e a reinicialização precisam de um Windows instalado; o Sandbox não oferece BCD convencional.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "restore",
+                               "Nome":  "Ponto de restauração",
+                               "Pendencia":  "A agenda foi validada. Criação efetiva e restauração dependem da Proteção do Sistema e de ensaio adicional.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "office",
+                               "Nome":  "Instalação e remoção do Office",
+                               "Pendencia":  "A ferramenta e os planos são conferidos. Edições, conflitos MSI/Click-to-Run e instalações reais ainda não têm homologação ampla.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "drivers",
+                               "Nome":  "Instalação de drivers",
+                               "Pendencia":  "Busca e correspondência foram verificadas. Instalação, reinicialização e versão final exigem hardware correspondente.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "cloud",
+                               "Nome":  "Download e remoção do OneDrive",
+                               "Pendencia":  "Proteções verificadas em arquivos controlados. Download e remoção em contas pessoais/empresariais ainda estão em validação.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "cloud-storage",
+                               "Nome":  "Análise de armazenamento em nuvem",
+                               "Pendencia":  "Login, arquivos e cotas por serviço foram consultados em uma conta pessoal Google. Outras contas, OneDrive e cenários de falha ainda precisam de validação ampliada.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "memory",
+                               "Nome":  "Gerenciamento de memória",
+                               "Pendencia":  "API e critérios verificados em auxiliares próprios. Acompanhamento prolongado com aplicativos reais ainda está em validação.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "printing",
+                               "Nome":  "Recuperação de impressão",
+                               "Pendencia":  "Execução e proteções verificadas em cenários controlados. Impressoras físicas, preferências e reinstalação exigem teste com o equipamento.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "installers",
+                               "Nome":  "Instalação e remoção de programas",
+                               "Pendencia":  "Inventário e fluxos foram verificados em cenários controlados. Instalação, atualização e remoção reais por WinGet/Chocolatey/Scoop, MSI e Store ainda precisam de ensaios por pacote e versão do Windows.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "tweaks",
+                               "Nome":  "Tweaks e configurações avançadas",
+                               "Pendencia":  "Seleção, consulta, backup e restauração foram verificados. O efeito de cada ajuste, remoção e alteração de energia ou segurança ainda precisa de ensaio na edição e versão correspondentes.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "cleanup",
+                               "Nome":  "Limpeza de arquivos e rastros",
+                               "Pendencia":  "Proteções e exclusão de arquivos próprios foram verificadas. Caches e rastros de cada programa real ainda precisam de validação; revise os itens encontrados antes de excluir.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "antimalware",
+                               "Nome":  "Integração com antimalware",
+                               "Pendencia":  "As consultas de processos e os fluxos foram verificados. Detecção de ameaças reais e integração com cada versão dos motores externos ainda precisam de homologação.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "disk-map",
+                               "Nome":  "Mapa de disco",
+                               "Pendencia":  "O índice NTFS foi verificado em discos virtuais. Tempo de leitura e completude em unidades físicas grandes ainda dependem de auditoria com administrador.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "repair",
+                               "Nome":  "Reparos do sistema",
+                               "Pendencia":  "Execução e recuperação de falhas precisam de testes adicionais em instalações correspondentes. Consulte os detalhes antes de aplicar.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "features",
+                               "Nome":  "Recursos opcionais",
+                               "Pendencia":  "Consulta e interface verificadas. Instalação/remoção e reinicialização variam por edição e precisam de ensaio específico.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "upgrade",
+                               "Nome":  "Atualização de versão do Windows",
+                               "Pendencia":  "Checagens disponíveis; instalação, migração e contornos de requisitos permanecem em testes e não garantem oferta pelo Windows Update.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "registry",
+                               "Nome":  "Limpeza ampliada do Registro",
+                               "Pendencia":  "Backups e rechecagem verificados em cenários controlados. A validade de referências de aplicativos reais precisa de avaliação individual.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "display",
+                               "Nome":  "Alteração de resolução",
+                               "Pendencia":  "Leitura e temporizador verificados; troca/reversão em monitores e drivers diversos ainda requerem validação.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "browser",
+                               "Nome":  "Políticas de navegadores",
+                               "Pendencia":  "Regras verificadas em cenários controlados. Efeito com DoH, perfis e diferentes navegadores depende de homologação adicional.",
+                               "Estado":  "Recurso em fase de testes"
+                           },
+                           {
+                               "Id":  "dns",
+                               "Nome":  "Aplicação de DNS",
+                               "Pendencia":  "Aplicação, leitura e restauração passaram em uma compilação anterior no Sandbox. A compilação atual e cenários com VPN, vários adaptadores e DNS seguro ainda precisam de validação administrativa.",
+                               "Estado":  "Recurso em fase de testes"
+                           }
+                       ],
+    "Criterios":  [
+                      "Instalação limpa",
+                      "Atualização e recuperação da versão anterior",
+                      "Cancelamento",
+                      "Falha de conexão",
+                      "Recuperação após falha",
+                      "Compatibilidade com edição/hardware"
+                  ],
+    "PrioridadeAdministrativa":  [
+                                     "MSI pelo fluxo administrativo do OuO",
+                                     "Instalação e remoção real do Office",
+                                     "Reparos DISM/SFC com falha e recuperação verificadas"
+                                 ]
+}

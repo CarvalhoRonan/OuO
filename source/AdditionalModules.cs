@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Text;
@@ -26,7 +26,7 @@ public partial class MainWindow {
         });
     }
     void DriversPage(){
-        Heading(T("Drivers","Drivers"),T("Veja as atualizações oferecidas para este PC e escolha o que instalar.","See updates offered for this PC and choose what to install."));BeginColumns(2);
+        Heading(T("Drivers","Drivers"),T("Veja as atualizações oferecidas para este PC e escolha o que instalar.","See updates offered for this PC and choose what to install."));BeginColumns(2);cardHost.IndependentColumns=true;
         var offersCard=Card(T("Atualizações disponíveis","Available updates"),T("O Windows verifica quais pacotes se aplicam ao dispositivo. Nada é instalado durante a busca.","Windows checks which packages apply to the device. Searching installs nothing."));
         TextBlock offerSummary=Text(preview?T("Clique em Procurar atualizações.","Click Check for updates."):T("Preparando a busca de atualizações…","Preparing driver update search…"),14,Muted);offersCard.Children.Add(offerSummary);
         ListBox offers=new ListBox{Height=200,Background=Surface,Foreground=Ink,BorderBrush=Muted,Visibility=Visibility.Collapsed};offersCard.Children.Add(offers);
@@ -78,6 +78,7 @@ public partial class MainWindow {
         Note(offline,"No Windows 7, a importação adiciona o pacote ao repositório; conclua a escolha no Gerenciador de Dispositivos. Pacotes compactados devem ser extraídos primeiro.","On Windows 7, import adds the package to the driver store; complete selection in Device Manager. Extract compressed packs first.");AttachResult(offline,offlineResult);
         DriverCatalogCard(()=>devices.SelectedItem as DriverRecord);
         pageRefreshActions["drivers"]=()=>{loadDevices(false);searchOffers(false);};if(!preview)Dispatcher.BeginInvoke(pageRefreshActions["drivers"]);
+        DriverCleanupCard();
     }
     void RuntimeLibraries(){
         var card=Card(T("Bibliotecas para aplicativos e jogos","Application and game runtimes"),T("Selecione somente componentes exigidos por seus programas. Confira as versões e licenças antes de instalar.","Select only components required by your apps. Review versions and licenses before installing."));

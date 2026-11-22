@@ -1,5 +1,8 @@
 ﻿PASS • Semantic labels are collectable; state colors update without global property-descriptor listeners.
-PASS • 22 experimental feature groups show notices beside their controls, with theme-aware colors.
+PASS • 25 experimental feature groups show notices beside their controls, with theme-aware colors.
+ouo-update • Consulta, canais e integridade possuem testes. Troca e recuperação entre duas distribuições completas ainda precisam de ensaio.
+driver-cleanup • Inventário, escopo e proteções possuem testes; remoção, reinicialização e reinstalação em hardware físico ainda precisam de validação.
+sensor-install • Instalador oficial 2.2.0 conferido por hash e assinatura; primeira instalação e cancelamento de UAC variam por sistema e precisam de ensaio próprio.
 clone • Cópia e GPT verificadas em discos virtuais; inicialização da cópia e dispositivos SATA/NVMe/USB ainda precisam de ensaio.
 account • Cópias e formato do Registro foram verificados. A entrada na conta de um Windows recuperado ainda precisa de validação.
 boot • A alternância e a reinicialização precisam de um Windows instalado; o Sandbox não oferece BCD convencional.
